@@ -7,14 +7,46 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-   
+  
+  
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+  google.charts.load('current', {packages: ['corechart', 'bar']});
+  google.charts.setOnLoadCallback(drawMultSeries);
+  function drawMultSeries() {
+      var data = google.visualization.arrayToDataTable([
+          ['value', '병원 수', '학교 수', '평당가격(십만원)'],
+          ['New York City, NY', 8175000, 8008000, 500000],
+          ['Los Angeles, CA', 3792000, 3694000,12],
+          ['Chicago, IL', 2695000, 2896000,12],
+          ['Houston, TX', 2099000, 1953000,12],
+          ['Philadelphia, PA', 1526000, 1517000,12]
+    ]);
+      var options = {
+              title: '귀농 추천 서비스 종합 차트',
+              chartArea: {width: '50%'},
+          hAxis: {
+              title: '수치',
+              minValue: 0
+          },
+      vAxis: {
+          title: '도시 명'
+      }
+  };
+      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+  }
+
+
+
+  </script>
 </head>
+
 <body>
 <div class="container">
     <table class="table table-striped">
         <thead>
         <tr>
-
             <td><B>시군구동읍면</B></td>
             <td><B>시군구</B></td>
             <td><B>병원수</B></td>
@@ -22,6 +54,7 @@
             <td><B>평당가격(10만원)</B></td>
         </tr>
         </thead>
+
         <tbody>
         {% for dong_data in dong %}
         <tr>
@@ -31,19 +64,24 @@
             <td>{{dong_data.medical}}</td>
             <td>{{dong_data.school}}</td>
             <td>{{dong_data.house}}</td>
+
         </tr>
         {% endfor %}
-        <tbody>
+        </tbody>
     </table>
-    <br>
-    <hr>
+
+    <br><hr>
+
+    <div id="chart_div"></div>
+
+
 
     </body>
-    <br>
-    <hr>
+    
+    <br><hr>
+
     <a href="{% url 'country:index'%}">index page로 이동</a>
-    <br>
-    <br>
-    <br>
-    <br>
+    
+    <br><br><br><br>
+
 </html>

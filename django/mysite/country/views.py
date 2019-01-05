@@ -15,6 +15,7 @@ def index(request):
     print("---------index()-------------")
 
     return render(request, 'country/index.html')
+
 """
 def detail(request):
     print("---------detail()-------------")
@@ -65,9 +66,17 @@ def result(request):
     print('입력된 3순위 : ', rank3)
 
     dong = testtest.order_by(rank1, rank2, rank3)[:10]
+
+    print("dong data print : ",dong)
+
     context = {'dong':dong}
+
     # return render(request, 'country/result.html')
     return render(request, 'country/result.html', context)
+
+
+
+
 # 인덱스 화면에서 값 입력 받고 시별로 정렬 한 후 디테일로 넘기는 함수(세션 유지)
 
 
