@@ -21,7 +21,6 @@ def index(request):
     return render(request, 'country/index.html', context)
 
 
-
 # 인덱스에서 비동기로 값 넘기기
 def searching(request):
     print("------searching()-------")
@@ -42,9 +41,6 @@ def searching(request):
     testtest = dong
     print("global 데이터" , testtest)
     return HttpResponse(request, content_type="text/plain")
-
-
-
 
 
 # 디테일 화면에서 값 입력 받고 결과창으로 넘기는 함수
