@@ -1,0 +1,139 @@
+
+
+
+body, html {height: 115%}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
+
+.home {display: none}
+.bgimg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("/static/sun_flower_farming.jpg");
+    min-height: 90%;
+}
+
+.search_city {
+    margin-left:auto; 
+    margin-right:auto;
+    padding: 70px;
+    padding-left: 20%;
+    font-size: 80%;
+    border:2px solid MediumSeaGreen; 
+}
+
+.search_city2 {
+    margin-left:auto; 
+    margin-right:auto;
+    padding: 70px;
+    padding-left: 10%;
+    font-size: 80%;
+    border:2px solid MediumSeaGreen; 
+}
+
+
+#rankForm {
+    display: none;
+}
+
+input[type=checkbox]+label{
+    display: block;
+    margin: 0.2em;
+}
+input[type=checkbox] + label {
+display: block;
+margin: 0.2em;
+cursor: pointer;
+padding: 0.2em;
+}
+
+input[type=checkbox] {
+display: none;
+}
+
+input[type=checkbox] + label:before {
+content: "";
+border: 0.1em solid #000;
+border-radius: 0.2em;
+display: inline-block;
+width: 1em;
+height: 1em;
+padding-left: 0.2em;
+padding-bottom: 0.3em;
+margin-right: 0.2em;
+vertical-align: bottom;
+color: transparent;
+transition: .2s;
+}
+
+input[type=checkbox] + label:active:before {
+transform: scale(0);
+}
+
+input[type=checkbox]:checked + label:before {
+background-color: MediumSeaGreen;
+border-color: MediumSeaGreen;
+color: #fff;
+}
+
+input[type=checkbox]:disabled + label:before {
+transform: scale(1);
+border-color: #aaa;
+}
+
+input[type=checkbox]:checked:disabled + label:before {
+transform: scale(1);
+background-color: #bfb;
+border-color: #bfb;
+}
+input[type=text] {
+padding:5px;
+padding-bottom: 10px; 
+border:2px solid MediumSeaGreen; 
+-webkit-border-radius: 5px;
+border-radius: 5px;
+font-family: "Nanum+Gothic+Coding"
+}
+
+select { 
+width: 200px;
+padding: .8em .5em;
+margin: 25px;
+font-family: inherit; 
+background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) 
+no-repeat 95% 50%; 
+border: 1px solid #999; 
+border-radius: 0px; 
+-webkit-appearance: none; 
+-moz-appearance: none; appearance: none; 
+}
+
+
+
+#searchButton {
+background-color: MediumSeaGreen;
+border: 0;
+border-radius: 5px;
+cursor: pointer;
+color: #fff;
+font-size:22px;
+font-weight: bold;
+line-height: 2.3;
+padding: 5px;
+width: 180px
+}
+
+input[type=submit] {
+    background-color: MediumSeaGreen;
+    border: 0;
+    border-radius: 5px;
+    margin-top: 80px;
+    margin-left: 220px;
+    cursor: pointer;
+    color: #fff;
+    font-size:22px;
+    font-weight: bold;
+    line-height: 2.3;
+    padding: 5px;
+    width: 300px
+}
+        

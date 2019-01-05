@@ -2,137 +2,132 @@
 
 <html lang="ko">
     <head>
-        <meta charset="utf-8">
         <title>첫번째 페이지</title>
-        <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-        <script type="text/javascript">
-
-            $(document).ready(function(){
-                $('.chkbx').click(function(){
-                    var text= "";
-                    $('.chkbx:checked').each(function(){
-                        text += $(this).val() + ',';
-                    });
-                    text = text.substring(0,text.length-1);
-                    $('#selectCity').val(text);
-                    
-
-                    /* 3개까지만 선택할 수 있도록 하는
-
-                    $('.chkbx').on('change', function(){
-                      if($('.chkbx:checked').length>3){
-                         this.checked = false;
-                      }
-                     });
-                     */
-                });
-            });
-            
-            // 버튼 클릭했을 때, searchCity() 함수 실행
-           $(document).ready(function(){
-             searchCity();
-           });
-
-            
-
-        </script>
-    
+        <meta charset="euc-kr">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding">
+        <link rel="stylesheet" href="/static/style.css" type='text/css'>
     </head>
 
+   
+
+
     <body>
-        <form action="{% url 'country:detail' %}" method="POST" class="form-search" id="searchForm" name="searchForm">
-            
-            {% csrf_token %}
-            <div class="search_city" onclick="citySearchStart('city_name','citySearch',event);" onkeyup="citySearch('city_name','citySearch',event);">
-                   
-                <div class="majorWrap">
-                    <table class="majorTable">
-                    <caption>시/군구 선택하기</caption>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <input type='checkbox' class="chkbx" value="춘천시"/>춘천시
-                                <!--  <a class="keywordText" href="#" onclick="setCitycity('city_name','ICN','인천',event);">춘천시</a>-->
-                            </td>
-                            <td>
-                                <input type='checkbox' class="chkbx" value="원주시"/>원주시
-                            </td>
-                            <td>
-                                <input type='checkbox' class="chkbx" value="강릉시"/>강릉시
-                            </td>
-                            <td>
-                                <input type='checkbox' class="chkbx" value="동해시"/>동해시
-                            </td>
-                        </tr>
+        <!-- header -->
+        <header class="w3-container w3-center w3-padding-32 w3-white">
+                <h1 class="w3-jumbo"><b>우리가족 집 찾기</b></h1>
+                <h5>수고한 당신의 새로운 안식처를 찾아보세요</h5>
+        </header>
 
-                        <tr>
-                            <td>
-                                <input type='checkbox' class="chkbx" value="태백시"/>태백시
-                            </td>
-                            <td>
-                                <input type='checkbox' class="chkbx" value="속초시"/>속초시
-                            </td>
-                            <td>
-                                <input type='checkbox' class="chkbx" value="삼척시"/>삼척시
-                            </td>
-                            <td>
-                                <input type='checkbox' class="chkbx" value="홍천군"/>홍천군
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <input type='checkbox' class="chkbx" value="횡성군"/>횡성군
-                            </td>
-                            <td>
-                                <input type='checkbox' class="chkbx" value="영월군"/>영월군
-                            </td>
-                            <td>
-                                <input type='checkbox' class="chkbx" value="평창군"/>평창군   
-                            </td>
-                            <td>
-                                <input type='checkbox' class="chkbx" value="정선군"/>정선군   
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td>
-                                <input type='checkbox' class="chkbx" value="철원군"/>철원군   
-                            </td>
-                            <td>
-                                <input type='checkbox' class="chkbx" value="화천군"/>화천군   
-                            <td>
-                                <input type='checkbox' class="chkbx" value="양구군"/>양구군   
-                            </td>
-                            <td>
-                                <input type='checkbox' class="chkbx" value="인제군"/>인제군   
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <input type='checkbox' class="chkbx" value="고성군"/>고성군   
-                            </td>
-                            <td>
-                                <input type='checkbox' class="chkbx" value="양양군"/>양양군   
-                            </td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    
-                    
-                    </tbody>
-                    </table>
+        <!-- Image header -->
+        <header class="bgimg w3-display-container scale-min" id="home">
+            <div class="w3-display-bottomleft w3-padding"></div>
+                <div class="w3-display-middle w3-center">
+                  <p><a href="#choice" class="w3-button w3-xxlarge w3-black">내게 맞는 지역 찾아보기</a></p>
                 </div>
-
-                <input type="text" id='selectCity' name='selectedCity' value='시/군구를 선택하세요'/>
-                <input type="submit" id="searchButton" title="지역검색" value="전송"/>
+        </header>
         
+        <!-- choice Container -->
+        <div class="w3-container w3-white w3-padding-48 w3-xxlarge" id="choice">
+            <div class="w3-content">
+                <h1 class="w3-center w3-small w3-xxlarge" style="margin-bottom:32px"><b>지역 고르기</b></h1>
+                <div class="w3-container w3-padding-8 w3-white"></div>
+
+                <form method="POST" class="form-search" id="searchForm" name="searchForm">  
+                    {% csrf_token %}
+                    <div class="search_city">      
+                        <div class="majorWrap">
+                            <table class="majorTable">
+                            {% if city_list %}
+                                {% for city in city_list %}
+                                    {% cycle '<tr>' '' '' '' %}
+                                        <td>
+                                        <input type="checkbox" id="{{city.name}}" class="chkbx" value="{{city.name}}">
+                                            <label for="{{ city.name }}">{{city.name}}</label>
+                                        </td>
+                                    {% cycle '' '' '' '<tr>' %}
+                                {% endfor %}
+                            {% else %}
+                                <p>데이터 값을 찾을 수 없음</p>
+                            {% endif %}
+                            </table>
+                        </div>
+                        <div class="w3-container w3-padding-16 w3-white"></div>
+                        <input type="text" id='selectCity' name='selectedCity' value='  시/군구를 선택하세요'/>
+                        <input type="button" class='submit' id="searchButton" title="지역검색" value="전송" onclick="location.href ='#rankForm'"/>
+                    </div> 
+                </form>
             </div>
-            
-            <div id="citySearch" class="search-list complete" style="display:none;">
+        </div>
+
+
+
+        <div class="w3-container w3-white w3-padding-48 w3-xxlarge" id="rank">
+            <div class="w3-content">
+                <h1 class="w3-center w3-small w3-xxlarge" style="margin-bottom:32px"><b>우선순위 선택하기</b></h1>
+                <form method = "POST" action = "{% url 'country:result' %}" class="form-rank" id="rankForm" >
+                    <div class="search_city2">
+                        {% csrf_token %}
+                     
+                        <select name="rankForm1">
+                            <option selected>1순위</option>
+                            <option value="house">집값</option>
+                            <option value="house">병원 수</option>
+                            <option value="-school">학교 수</option>                          
+                        </select>
+        
+                      
+                        <select name="rankForm2">
+                            <option selected>2순위</option>
+                            <option value="house">집값</option>
+                            <option value="house">병원 수</option>
+                            <option value="-school">학교 수</option>                                
+                        </select>
+                       
+                        <select name="rankForm3">
+                            <option selected>3순위</option>
+                            <option value="house">집값</option>
+                            <option value="house">병원 수</option>
+                            <option value="-school">학교 수</option>       
+                        </select><br>
+                        <input type = "submit" class="rankSubmit">
+                </form>
             </div>
-        </form>
+            </div>
+        </div>
+      
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script type="text/javascript">
+
+            $('.chkbx').click(function(){
+                var text= "";
+                $('.chkbx:checked').each(function(){
+                    text += $(this).val() + ',';
+                });
+                text = text.substring(0,text.length-1);
+                $('#selectCity').val(text);
+                
+            });
+         
+        
+            $("#searchButton").click(function(){
+                var data = $("#searchForm [name='selectedCity']").val();
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'country:search' %}",
+                    data: {'data': data, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                    success: function(response){
+                        document.getElementById("rankForm").style.display = "block";
+
+    ;               },
+                    error: function(request, status, error){
+                        alert("비동기 요청시 에러 발생")
+                    },
+                });
+            })
+        </script>
+        
 
     </body>
 </html>
