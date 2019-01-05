@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <title>첫번째 페이지</title>
+        <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script type="text/javascript">
+
+            $(document).ready(function(){
+                $('.chkbx').click(function(){
+                    var text= "";
+                    $('.chkbx:checked').each(function(){
+                        text += $(this).val() + ',';
+                    });
+                    text = text.substring(0,text.length-1);
+                    $('#selectCity').val(text);
+                    
+
+                    /* 3개까지만 선택할 수 있도록 하는
+
+                    $('.chkbx').on('change', function(){
+                      if($('.chkbx:checked').length>3){
+                         this.checked = false;
+                      }
+                     });
+                     */
+                });
+            });
+            
+            // 버튼 클릭했을 때, searchCity() 함수 실행
+           $(document).ready(function(){
+             searchCity();
+           });
+
+            
+
+        </script>
+    
+    </head>
+
+    <body>
+        <form action="{% url 'country:detail' %}" method="POST" class="form-search" id="searchForm" name="searchForm">
+            
+            {% csrf_token %}
+            <div class="search_city" onclick="citySearchStart('city_name','citySearch',event);" onkeyup="citySearch('city_name','citySearch',event);">
+                   
+                <div class="majorWrap">
+                    <table class="majorTable">
+                    <caption>시/군구 선택하기</caption>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type='checkbox' class="chkbx" value="춘천시"/>춘천시
+                                <!--  <a class="keywordText" href="#" onclick="setCitycity('city_name','ICN','인천',event);">춘천시</a>-->
+                            </td>
+                            <td>
+                                <input type='checkbox' class="chkbx" value="원주시"/>원주시
+                            </td>
+                            <td>
+                                <input type='checkbox' class="chkbx" value="강릉시"/>강릉시
+                            </td>
+                            <td>
+                                <input type='checkbox' class="chkbx" value="동해시"/>동해시
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input type='checkbox' class="chkbx" value="태백시"/>태백시
+                            </td>
+                            <td>
+                                <input type='checkbox' class="chkbx" value="속초시"/>속초시
+                            </td>
+                            <td>
+                                <input type='checkbox' class="chkbx" value="삼척시"/>삼척시
+                            </td>
+                            <td>
+                                <input type='checkbox' class="chkbx" value="홍천군"/>홍천군
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input type='checkbox' class="chkbx" value="횡성군"/>횡성군
+                            </td>
+                            <td>
+                                <input type='checkbox' class="chkbx" value="영월군"/>영월군
+                            </td>
+                            <td>
+                                <input type='checkbox' class="chkbx" value="평창군"/>평창군   
+                            </td>
+                            <td>
+                                <input type='checkbox' class="chkbx" value="정선군"/>정선군   
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <input type='checkbox' class="chkbx" value="철원군"/>철원군   
+                            </td>
+                            <td>
+                                <input type='checkbox' class="chkbx" value="화천군"/>화천군   
+                            <td>
+                                <input type='checkbox' class="chkbx" value="양구군"/>양구군   
+                            </td>
+                            <td>
+                                <input type='checkbox' class="chkbx" value="인제군"/>인제군   
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input type='checkbox' class="chkbx" value="고성군"/>고성군   
+                            </td>
+                            <td>
+                                <input type='checkbox' class="chkbx" value="양양군"/>양양군   
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    
+                    
+                    </tbody>
+                    </table>
+                </div>
+
+                <input type="text" id='selectCity' name='selectedCity' value='시/군구를 선택하세요'/>
+                <input type="submit" id="searchButton" title="지역검색" value="전송"/>
+        
+            </div>
+            
+            <div id="citySearch" class="search-list complete" style="display:none;">
+            </div>
+        </form>
+
+    </body>
+</html>
