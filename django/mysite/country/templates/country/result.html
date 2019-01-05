@@ -1444,7 +1444,7 @@
             <td>{{dong_data.medical}}</td>
             <td>{{dong_data.school}}</td>
             <td>{{dong_data.house}}</td>
-            <input type="hidden" class="city" value="{{dong_data.city}}" >
+            <input type="hidden" class="city" name="{{dong_data.city}}" >
         </tr>
         {% endfor %}
         </tbody>
@@ -1460,12 +1460,32 @@
     
     <br><br><br><br>
 
-    <!--
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <!--setTimeout(function(){ alert($("input[name=원주시]").length); }, 5000); 이거작동함 -->
     <script>
-        setTimeout(function(){ alert(document.getElementsByTagName("input")[0].value); }, 5000);
+        var test2 = $("input[name=춘천시]").length;
+        $("input[name=원주시]").length;
+        $("input[name=강릉시]").length;
+        $("input[name=동해시]").length;
+        $("input[name=태백시]").length;
+        $("input[name=속초시]").length;
+        $("input[name=삼척시]").length;
+        $("input[name=홍천군]").length;
+        $("input[name=횡성군]").length;
+        $("input[name=영월군]").length;
+        $("input[name=평창군]").length;
+        $("input[name=정선군]").length;
+        $("input[name=철원군]").length;
+        $("input[name=화천군]").length;
+        $("input[name=양구군]").length;
+        $("input[name=인제군]").length;
+        $("input[name=고성군]").length;
+        $("input[name=양양군]").length;
+
       
     </script>
-    -->
-     
-</body>
+
+    </script>   
+
+    </body>
 </html>
