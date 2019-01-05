@@ -4,10 +4,13 @@ from django.views.generic import DetailView
 from django.shortcuts import render
 import json
 from django.db.models import Q
+from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from .models import dong_data
+
+
     
 
 # 인덱스 화면을 띄우는 함수
@@ -30,6 +33,7 @@ def detail(request):
     try:
         form = request.POST['selectedCity']
         print('입력된 값 : ', form)
+        global cityList
         cityList = form.split(',')
         print('변환된 값 : ', cityList)
 
@@ -66,7 +70,7 @@ def result(request):
     print('입력된 3순위 : ', rank3)
 
     dong = testtest.order_by(rank1, rank2, rank3)[:10]
-
+    
     print("dong data print : ",dong)
 
     context = {'dong':dong}

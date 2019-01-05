@@ -49,9 +49,8 @@
       chart.draw(data, options);
   }
 
-
-
   </script>
+  
 </head>
 
 <body>
@@ -1445,7 +1444,7 @@
             <td>{{dong_data.medical}}</td>
             <td>{{dong_data.school}}</td>
             <td>{{dong_data.house}}</td>
-
+            <input type="hidden" class="city" value="{{dong_data.city}}" >
         </tr>
         {% endfor %}
         </tbody>
@@ -1455,14 +1454,18 @@
 
     <div id="chart_div"></div>
 
-
-
-    </body>
-    
     <br><hr>
 
     <a href="{% url 'country:index'%}">index page로 이동</a>
     
     <br><br><br><br>
 
+    <!--
+    <script>
+        setTimeout(function(){ alert(document.getElementsByTagName("input")[0].value); }, 5000);
+      
+    </script>
+    -->
+     
+</body>
 </html>
