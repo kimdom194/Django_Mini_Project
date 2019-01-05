@@ -3,17 +3,6 @@ from django.views.generic import ListView
 from django.views.generic import DetailView
 from django.shortcuts import render
 import json
-<<<<<<< HEAD
-from django.db.models import Q
-from django.db.models import Count
-from django.shortcuts import get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponse
-from django.urls import reverse
-from .models import dong_data
-
-
-    
-=======
 
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
@@ -22,7 +11,6 @@ from django.urls import reverse
 from country.func import sortCity
 from country.models import KangwonCity, Infra, Dong_data
 
->>>>>>> 07b9951d1cb11d4919f24fb567754c6dca4c8741
 
 # 인덱스 화면을 띄우는 함수
 def index(request):
@@ -38,19 +26,10 @@ def index(request):
 def searching(request):
     print("------searching()-------")
     try:
-<<<<<<< HEAD
-        form = request.POST['selectedCity']
-        print('입력된 값 : ', form)
-        global cityList
-        cityList = form.split(',')
-        print('변환된 값 : ', cityList)
-
-=======
          form = request.POST['data']
          print('입력된 값 : ', form)
          cityList = form.split(',')
          print('변환된 값 : ', cityList)
->>>>>>> 07b9951d1cb11d4919f24fb567754c6dca4c8741
     except(KeyError):
         
          return render(request, {'error_message' : '값 오류입니다.'} )
@@ -84,12 +63,6 @@ def result(request):
     print('입력된 3순위 : ', rank3)
 
     dong = testtest.order_by(rank1, rank2, rank3)[:10]
-<<<<<<< HEAD
-    
-    print("dong data print : ",dong)
-
-=======
->>>>>>> 07b9951d1cb11d4919f24fb567754c6dca4c8741
     context = {'dong':dong}
     # return render(request, 'country/result.html')
     return render(request, 'country/result.html', context)
