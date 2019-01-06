@@ -21,41 +21,44 @@
     <script src="http://d3js.org/topojson.v1.min.js"></script>
 
 <!-- 차트 개발 아직 못함 따흑-->
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="text/javascript">
-  google.charts.load('current', {packages: ['corechart', 'bar']});
-  google.charts.setOnLoadCallback(drawMultSeries);
-  function drawMultSeries() {
-      var data = google.visualization.arrayToDataTable([
-          ['value', '병원 수', '학교 수', '평당가격(십만원)'],
-          ['New York City, NY', 8175000, 8008000, 500000],
-          ['Los Angeles, CA', 3792000, 3694000,12],
-          ['Chicago, IL', 2695000, 2896000,12],
-          ['Houston, TX', 2099000, 1953000,12],
-          ['Philadelphia, PA', 1526000, 1517000,12]
-    ]);
-      var options = {
-              title: '귀농 추천 서비스 종합 차트',
-              chartArea: {width: '50%'},
-          hAxis: {
-              title: '수치',
-              minValue: 0
-          },
-      vAxis: {
-          title: '도시 명'
-      }
-  };
-      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-      chart.draw(data, options);
-  }
+<!-- 
+    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawVisualization);
 
+    function drawVisualization() {
+        // Some raw data (not necessarily accurate)
 
+       
+ 
 
-  </script>
+        var data = google.visualization.arrayToDataTable([ 
+        ['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
+        ['2004/05',  165,      938,         522,             998,           450,      614.6],
+        ['2005/06',  135,      1120,        599,             1268,          288,      682],
+        ['2006/07',  157,      1167,        587,             807,           397,      623],
+        ['2007/08',  139,      1110,        615,             968,           215,      609.4],
+        ['2008/09',  136,      691,         629,             1026,          366,      569.6]
+        ]);
+
+        var options = {
+        title : 'Monthly Coffee Production by Country',
+        vAxis: {title: 'Cups'},
+        hAxis: {title: 'Month'},
+        seriesType: 'bars',
+        series: {5: {type: 'line'}}
+        };
+
+        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+    </script>
+    -->
 </head>
 
 <body>
-
 
         <script>
 
