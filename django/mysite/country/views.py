@@ -59,7 +59,11 @@ def result(request):
     print('입력된 3순위 : ', rank3)
 
     dong = testtest.order_by(rank1, rank2, rank3)[:10]
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 25aa6f91511aea691dae5ba91f699e0664bb9fbc
     context = {'dong':dong}
     print(context)
     # return render(request, 'country/result.html')
