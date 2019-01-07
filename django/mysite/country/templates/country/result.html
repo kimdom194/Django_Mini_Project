@@ -3,6 +3,7 @@
 <head>
 {% load static %}
   <title>추천하는 지역</title>
+  
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -14,7 +15,9 @@
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,10 +25,21 @@
     <title>강원도 행정구역 지도</title>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=oju9hhvfqh"></script>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=oju9hhvfqh&submodules=geocoder"></script>
-    <div id="map" style="margin:0 auto; width:80%;height:650px;"></div>
+    <div class="w3-clear"></div>
+    <header class="w3-center w3-margin-bottom">
+      <br>
+        <h1><b>MAP</b></h1>
+      <p><b>지도로 한눈에 확인하세요!</b></p>
+      <p class="w3-padding-16"><button class="w3-button w3-black">핀을 눌러 정보를 확인해보세요.</button></p>
+    </header>
+    
+    <div id="map" style="margin:0 auto; top:50px; width:85%;height:650px;"></div>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <style>
+            body,h1 {font-family: "Montserrat", sans-serif}
+img {margin-bottom: -7px}
+.w3-row-padding img {margin-bottom: 12px}
             body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
             .w3-row-padding img {margin-bottom: 12px}
             /* Set the width of the sidebar to 120px */
@@ -35,64 +49,26 @@
             /* Remove margins from "page content" on small screens */
             @media only screen and (max-width: 600px) {#main {margin-left: 0}}
             </style>
-<!-- 차트 개발 아직 못함 따흑-->
-<!-- 
-    
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawVisualization);
-
-    function drawVisualization() {
-        // Some raw data (not necessarily accurate)
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-       
- 
-
-        var data = google.visualization.arrayToDataTable([ 
-        ['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
-        ['2004/05',  165,      938,         522,             998,           450,      614.6],
-        ['2005/06',  135,      1120,        599,             1268,          288,      682],
-        ['2006/07',  157,      1167,        587,             807,           397,      623],
-        ['2007/08',  139,      1110,        615,             968,           215,      609.4],
-        ['2008/09',  136,      691,         629,             1026,          366,      569.6]
-        ]);
-
-        var options = {
-        title : 'Monthly Coffee Production by Country',
-        vAxis: {title: 'Cups'},
-        hAxis: {title: 'Month'},
-        seriesType: 'bars',
-        series: {5: {type: 'line'}}
-        };
-
-        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-    }
-    </script>
-    -->
-
-  </script>
-  
+<!-- Icon Bar (Sidebar - hidden on small screens) -->
 
 
-  </script>
-  
 
 </head>
 
 <body>
-<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
-                    <!-- Avatar image in top left corner -->
-                    <img src="{% static 'tomato.png' %}" style="width:100%"/>
-                    <a href="/country/" class="w3-bar-item w3-button w3-padding-large w3-black">
-                      <i class="fa fa-home w3-xxlarge"></i>
-                      <p>HOME</p>
-                    </a>
-                  </nav>  
 
+
+        
+
+                  <br><hr><br>
+                  <div class="w3-clear"></div>
+                  <header class="w3-center w3-margin-bottom">
+                    <br>
+                      <h1><b>LIST</b></h1>
+                    <p><b>상위 10개의 추천지역입니다</b></p>
+                 <br><hr><br>
+
+                  </header>
                   <form name = 'table_final'>
                         <div class="container">
                             <table class="table table-striped">
@@ -128,8 +104,7 @@
             <script>
         
             window.onload = function(){
-        
-        
+
                 try{
                 var one_col = table_final.원주시.length     
                 if(one_col == undefined){
@@ -306,12 +281,15 @@
                 var gang_col = table_final.강릉시.length     
                 if(gang_col == undefined){
                     gang_col = 1;
-                }gang_col = gang_col/10.0;
+            
+                }gang_col = gang_col/10.0; 
+               
                 }catch{
                     gang_col = 0
+
                 }
                 console.log(gang_col)
-        
+                
         
                 var HOME_PATH = window.HOME_PATH || '.';
                 var position = new naver.maps.LatLng(37.9082504, 127.7247803);
@@ -1606,10 +1584,11 @@
                     var contentString = [
                         '<div class="iw_inner">',
                         '   <h3>'+name+'</h3>',
-                        '   <p>검거율:'+a+'<br />',
-                        '   <p>병원 수:'+b+' <br />',
-                        '   <p>학교 수:'+c+' <br />',
-                        '   <p>평당 가격(십만 원):'+d+' <br />',
+                        
+                        '   <p>병원 수 : '+b+' <br />',
+                        '   <p>학교 수 : '+c+' <br />',
+                        '   <p>평당 가격(십만 원) : '+d+' <br />',
+                        '   <p>범죄 검거율(%) : '+a+'<br />',
                         '   </p>',
                         '</div>'
                     ].join('');
@@ -1677,22 +1656,15 @@
                         });
                     });
                 }
+
+                
             }
+           
                 </script>
 
-<br><br><br><hr><br><br><br>
 
-
-    <br><hr>
-
-    <div id="chart_div"></div>
-
-    <br><hr>
-
-    <a href="{% url 'country:index'%}">index page로 이동</a>
-    
-    <br><br><br><br>
-
-
+    <br><hr><br>
+        <a href="{% url 'country:index'%}">index page로 이동</a>
+    <br><hr><br><br>
     </body>
 </html>

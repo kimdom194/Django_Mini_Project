@@ -11,7 +11,13 @@
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
+            body,h1 {font-family: "Montserrat", sans-serif}
+            img {margin-bottom: -7px}
+            .w3-row-padding img {margin-bottom: 12px}
             body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
             .w3-row-padding img {margin-bottom: 12px}
             /* Set the width of the sidebar to 120px */
@@ -27,6 +33,7 @@
 
 
     <body class="w3-black">
+        <container></container>
             <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
                     <!-- Avatar image in top left corner -->
                     <img src="{% static 'tomato.jpg' %}" style="margin:0 auto; width:193%"/>
@@ -46,15 +53,19 @@
                       <i class="fa fa-envelope w3-xxlarge"></i>
                       <p>CONTACT</p>  -->
                     </a>
-                  </nav>    
+                  </nav>  
+                 </container> 
         <!-- header -->
+        <container>
         <header class="w3-container w3-center w3-padding-32 w3-white">
-                <h1 class="w3-jumbo"><b>우리가족 집 찾기</b></h1>
+                <h1 class="w3-jumbo" style="color:yellow"><b>귀농귀촌,　　</b></h1>
+                <h1 class="w3-jumbo"><b>시작해볼까요?</b></h1>
                 <h5>수고한 당신의 새로운 안식처를 찾아보세요</h5>
         </header>
 
         <!-- Image header -->
-        <header class="bgimg w3-display-container scale-min" id="home">
+        <header class="bgimg w3-display-container scale-min w3-center w3-padding-32 " id="home">
+           
             <div class="w3-display-bottomleft w3-padding"></div>
                 <div class="w3-display-middle w3-center">
                   <p><a href="#choice" class="w3-button w3-xxlarge w3-black">내게 맞는 지역 찾아보기</a></p>
@@ -68,7 +79,12 @@
         <div class="w3-container w3-white w3-padding-48 w3-xxlarge" id="choice">
             
             <div class="w3-content">
-                <h1 class="w3-center w3-small w3-xxlarge" style="margin-bottom:32px"><b>지역 고르기</b></h1>
+                    <div class="w3-clear"></div>
+    <header class="w3-center w3-margin-bottom">
+      <br>
+                <h1><b>지역 고르기</b></h1>
+
+    </header>
                 
                 <div class="w3-container w3-padding-8 w3-white"></div>
 
@@ -93,15 +109,17 @@
                         </div>
                         <div class="w3-container w3-padding-16 w3-white"></div>
                         <input type="text" id='selectCity' name='selectedCity' value='  시/군구를 선택하세요'/>
-                        <input type="button" class='submit' id="searchButton" title="지역검색" value="전송" onclick="location.href ='#rankForm'"/>
+                        <input type="button" class='submit' id="searchButton" title="지역검색" value="전송" onclick="location.href ='#rank'"/>
                     </div> 
                 </form>
             </div>
+            <br><br><br>
         </div>
 
-
+        
 
         <div class="w3-container w3-white w3-padding-48 w3-xxlarge" id="rank">
+                <hr><br>
             <div class="w3-content">
                 <h1 class="w3-center w3-small w3-xxlarge" style="margin-bottom:32px"><b>우선순위 선택하기</b></h1>
                 <form method = "POST" action = "{% url 'country:result' %}" class="form-rank" id="rankForm" >
@@ -133,11 +151,13 @@
                 </form>
             </div>
             </div>
+            <br><br><br>
         </div>
         
 
         <!-- choice2 container -->
         <div class="w3-container w3-white w3-padding-48 w3-xxlarge" id="choice2">
+                <hr><br><br><br>
             <div class="w3-content">
                     <h1 class="w3-center w3-small w3-xxlarge" style="margin-bottom:20px"><b>강원도 내 행정구역별 인프라</b></h1>
                     
@@ -178,6 +198,6 @@
             })
         </script>
         
-
+    </container>
     </body>
 </html>
