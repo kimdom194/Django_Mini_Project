@@ -29,10 +29,11 @@
             </style>
     </head>
 
-   
+
 
 
     <body class="w3-black">
+        <container></container>
             <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
                     <!-- Avatar image in top left corner -->
                     <img src="{% static 'tomato.jpg' %}" style="margin:0 auto; width:193%"/>
@@ -52,8 +53,10 @@
                       <i class="fa fa-envelope w3-xxlarge"></i>
                       <p>CONTACT</p>  -->
                     </a>
-                  </nav>    
+                  </nav>
+                 </container>
         <!-- header -->
+        <container>
         <header class="w3-container w3-center w3-padding-32 w3-white">
                 <h1 class="w3-jumbo" style="color:yellow"><b>귀농귀촌,　　</b></h1>
                 <h1 class="w3-jumbo"><b>시작해볼까요?</b></h1>
@@ -61,7 +64,8 @@
         </header>
 
         <!-- Image header -->
-        <header class="bgimg w3-display-container scale-min" id="home">
+        <header class="bgimg w3-display-container scale-min w3-center w3-padding-32 " id="home">
+
             <div class="w3-display-bottomleft w3-padding"></div>
                 <div class="w3-display-middle w3-center">
                   <p><a href="#choice" class="w3-button w3-xxlarge w3-black">내게 맞는 지역 찾아보기</a></p>
@@ -70,10 +74,10 @@
                 </div>
         </header>
 
-        
+
         <!-- choice Container -->
         <div class="w3-container w3-white w3-padding-48 w3-xxlarge" id="choice">
-            
+
             <div class="w3-content">
                     <div class="w3-clear"></div>
     <header class="w3-center w3-margin-bottom">
@@ -81,12 +85,12 @@
                 <h1><b>지역 고르기</b></h1>
 
     </header>
-                
+
                 <div class="w3-container w3-padding-8 w3-white"></div>
 
-                <form method="POST" class="form-search" id="searchForm" name="searchForm">  
+                <form method="POST" class="form-search" id="searchForm" name="searchForm">
                     {% csrf_token %}
-                    <div class="search_city">      
+                    <div class="search_city">
                         <div class="majorWrap">
                             <table class="majorTable">
                             {% if city_list %}
@@ -105,43 +109,43 @@
                         </div>
                         <div class="w3-container w3-padding-16 w3-white"></div>
                         <input type="text" id='selectCity' name='selectedCity' value='  시/군구를 선택하세요'/>
-                        <input type="button" class='submit' id="searchButton" title="지역검색" value="전송" onclick="location.href ='#rankForm'"/>
-                    </div> 
+                        <input type="button" class='submit' id="searchButton" title="지역검색" value="전송" onclick="location.href ='#rank'"/>
+                    </div>
                 </form>
             </div>
             <br><br><br>
         </div>
 
-        
+
 
         <div class="w3-container w3-white w3-padding-48 w3-xxlarge" id="rank">
-                <hr><br><br><br>
+                <hr><br>
             <div class="w3-content">
                 <h1 class="w3-center w3-small w3-xxlarge" style="margin-bottom:32px"><b>우선순위 선택하기</b></h1>
                 <form method = "POST" action = "{% url 'country:result' %}" class="form-rank" id="rankForm" >
                     <div class="search_city2">
                         {% csrf_token %}
-                     
+
                         <select name="rankForm1">
                             <option selected disabled="disabled">1순위</option>
                             <option value="house">집값</option>
                             <option value="-medical">병원 수</option>
-                            <option value="-school">학교 수</option>                          
+                            <option value="-school">학교 수</option>
                         </select>
-        
-                      
+
+
                         <select name="rankForm2">
                             <option selected disabled="disabled">2순위</option>
                             <option value="house">집값</option>
                             <option value="-medical">병원 수</option>
-                            <option value="-school">학교 수</option>                                
+                            <option value="-school">학교 수</option>
                         </select>
-                       
+
                         <select name="rankForm3">
                             <option selected disabled="disabled">3순위</option>
                             <option value="house">집값</option>
                             <option value="-medical">병원 수</option>
-                            <option value="-school">학교 수</option>       
+                            <option value="-school">학교 수</option>
                         </select><br>
                         <input type = "submit" class="rankSubmit">
                 </form>
@@ -149,18 +153,18 @@
             </div>
             <br><br><br>
         </div>
-        
+
 
         <!-- choice2 container -->
         <div class="w3-container w3-white w3-padding-48 w3-xxlarge" id="choice2">
                 <hr><br><br><br>
             <div class="w3-content">
                     <h1 class="w3-center w3-small w3-xxlarge" style="margin-bottom:20px"><b>강원도 내 행정구역별 인프라</b></h1>
-                    
+
                     <img src="{% static 'chart.jpg' %}" style="margin-left: auto; margin-right: auto; display: block; width:100%;height:600px;"/>
 
         </div>
-      
+
        <!-- choice3 continer-->
 
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -173,10 +177,10 @@
                 });
                 text = text.substring(0,text.length-1);
                 $('#selectCity').val(text);
-                
+
             });
-         
-        
+
+
             $("#searchButton").click(function(){
                 var data = $("#searchForm [name='selectedCity']").val();
                 $.ajax({
@@ -193,7 +197,7 @@
                 });
             })
         </script>
-        
 
+    </container>
     </body>
 </html>
