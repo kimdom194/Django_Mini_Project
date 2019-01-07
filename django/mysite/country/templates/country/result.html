@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,68 +19,21 @@
     <div id="map" style="margin:0 auto; width:80%;height:650px;"></div>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
-
-<!-- 차트 개발 아직 못함 따흑-->
-<!-- 
-    
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawVisualization);
-
-    function drawVisualization() {
-        // Some raw data (not necessarily accurate)
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-       
- 
-
-        var data = google.visualization.arrayToDataTable([ 
-        ['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
-        ['2004/05',  165,      938,         522,             998,           450,      614.6],
-        ['2005/06',  135,      1120,        599,             1268,          288,      682],
-        ['2006/07',  157,      1167,        587,             807,           397,      623],
-        ['2007/08',  139,      1110,        615,             968,           215,      609.4],
-        ['2008/09',  136,      691,         629,             1026,          366,      569.6]
-        ]);
-
-        var options = {
-        title : 'Monthly Coffee Production by Country',
-        vAxis: {title: 'Cups'},
-        hAxis: {title: 'Month'},
-        seriesType: 'bars',
-        series: {5: {type: 'line'}}
-        };
-
-        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-    }
-    </script>
-    -->
-=======
-  </script>
-  
->>>>>>> 25aa6f91511aea691dae5ba91f699e0664bb9fbc
-=======
-  </script>
-  
->>>>>>> 25aa6f91511aea691dae5ba91f699e0664bb9fbc
 </head>
 
 <body>
-
+    
         <script>
 
                 var HOME_PATH = window.HOME_PATH || '.';
                 var position = new naver.maps.LatLng(37.9082504, 127.7247803);
-                
+
                 var map = new naver.maps.Map('map', {
                         center: position,
                         zoom: 3
                     });
                 infowindow = null;
-                
+
                 var chooncheon = new naver.maps.Polygon({
                     map: map,
                     paths: [
@@ -152,9 +105,9 @@
                                 new naver.maps.LatLng(38.01556103947868, 127.85979071697689),
                                 new naver.maps.LatLng(38.04851498801749, 127.85518278921059),
                                 new naver.maps.LatLng(38.04815092000516, 127.90579626302805),
-                             
+
                         ]
-                
+
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
@@ -163,8 +116,8 @@
                     strokeOpacity: 0,
                     strokeWeight: 3
                 });
-                
-                
+
+
                 var yangyang = new naver.maps.Polygon({
                     map: map,
                     paths: [
@@ -206,19 +159,19 @@
                  new naver.maps.LatLng(38.146412841728754, 128.5616628397355),
                  new naver.maps.LatLng(38.158021595850855, 128.57285700525713),
                  new naver.maps.LatLng(38.15831275424904, 128.61133667019794),
-                
-                             
+
+
                         ]
-                        
+
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
                     fillOpacity: 0.5,
-                
+
                 });
-                
-                
-                
+
+
+
                 var gosung = new naver.maps.Polygon({
                     map: map,
                     paths: [
@@ -263,23 +216,23 @@
                  new naver.maps.LatLng(38.32170265416708, 128.2674471697584),
                  new naver.maps.LatLng(38.357611533756746, 128.2461987980439),
                  new naver.maps.LatLng(38.37495528548392, 128.2061720001211)
-                
-                             
+
+
                         ]
-                        
+
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
                     fillOpacity: 0.5,
-                
+
                 });
-                
-                
+
+
                 var inje = new naver.maps.Polygon({
                     map: map,
                     paths: [
                         [     //인제군
-                
+
                 new naver.maps.LatLng(38.338006015888745, 128.12544185956497),
                 new naver.maps.LatLng(38.37495528548392, 128.2061720001211),
                 new naver.maps.LatLng(38.357611533756746, 128.2461987980439),
@@ -353,17 +306,17 @@
                 new naver.maps.LatLng(38.32236608099283, 128.15874211138745),
                 new naver.maps.LatLng(38.32422054669592, 128.12556335685483),
                 new naver.maps.LatLng(38.338006015888745, 128.12544185956497),
-                             
+
                         ]
-                        
+
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
                     fillOpacity: 0.5,
-                
+
                 });
-                
-                
+
+
                 var yanggoo = new naver.maps.Polygon({
                     map: map,
                     paths: [
@@ -409,17 +362,17 @@
                  new naver.maps.LatLng(38.20550445935387, 127.8550683285027),
                  new naver.maps.LatLng(38.24965924406081, 127.85707539793698),
                  new naver.maps.LatLng(38.32422986348101, 127.82637643749516)
-                             
+
                         ]
-                        
+
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
                     fillOpacity: 0.5,
-                
+
                 });
-                
-                
+
+
                 var hwacheon = new naver.maps.Polygon({
                     map: map,
                     paths: [
@@ -480,17 +433,17 @@
                  new naver.maps.LatLng(38.267235363360086, 127.59925430519995),
                  new naver.maps.LatLng(38.28997426084708, 127.58557191128067),
                  new naver.maps.LatLng(38.337763566064, 127.61231986933076),
-                             
+
                         ]
-                        
+
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
                     fillOpacity: 0.5,
-                
+
                 });
-                
-                
+
+
                 var cheolwon = new naver.maps.Polygon({
                     map: map,
                     paths: [
@@ -548,15 +501,15 @@
                  new naver.maps.LatLng(38.26255766722931, 127.11610682730382),
                  new naver.maps.LatLng(38.289324698353205, 127.1114029794941),
                         ]
-                        
+
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
                     fillOpacity: 0.5,
-                
+
                 });
-                
-                
+
+
                 var jungsun = new naver.maps.Polygon({
                     map: map,
                     paths: [
@@ -625,17 +578,17 @@
                  new naver.maps.LatLng(37.53447792070685, 128.94132244775494),
                  new naver.maps.LatLng(37.5431344574351, 128.96136579700214),
                  new naver.maps.LatLng(37.53115593732261, 128.97541711260882),
-                             
+
                         ]
-                        
+
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
                     fillOpacity: 0.5,
-                
+
                 });
-                
-                
+
+
                 var pyungchang = new naver.maps.Polygon({
                     map: map,
                     paths: [
@@ -716,17 +669,17 @@
                  new naver.maps.LatLng(37.795330802274385, 128.5447228735597),
                  new naver.maps.LatLng(37.80395197800634, 128.57152748707125),
                  new naver.maps.LatLng(37.81820013788979, 128.58481823835257),
-                             
+
                         ]
-                        
+
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
                     fillOpacity: 0.5,
-                
+
                 });
-                
-                
+
+
                 var youngwol = new naver.maps.Polygon({
                     map: map,
                     paths: [
@@ -812,17 +765,17 @@
                  new naver.maps.LatLng(37.38537886013539, 128.23893440002965),
                  new naver.maps.LatLng(37.39064622904387, 128.2570553611413),
                  new naver.maps.LatLng(37.405167529128924, 128.2678514699623),
-                             
+
                         ]
-                        
+
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
                     fillOpacity: 0.5,
-                
+
                 });
-                
-                
+
+
                 var hweongsung = new naver.maps.Polygon({
                     map: map,
                     paths: [
@@ -886,17 +839,17 @@
                  new naver.maps.LatLng(37.64772000126713, 128.206909824165),
                  new naver.maps.LatLng(37.62401009458283, 128.22868812010302),
                  new naver.maps.LatLng(37.62666351063648, 128.25699068284163),
-                
-                             
+
+
                         ]
-                        
+
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
                     fillOpacity: 0.5,
                 });
-                
-                
+
+
                 var hongcheon = new naver.maps.Polygon({
                     map: map,
                     paths: [
@@ -995,17 +948,17 @@
                  new naver.maps.LatLng(37.89590321649898, 127.97298472845921),
                  new naver.maps.LatLng(37.92740075127829, 127.99446898014068),
                  new naver.maps.LatLng(37.939914305775346, 127.99563401097652),
-                             
+
                         ]
-                        
+
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
                     fillOpacity: 0.5,
-                
+
                 });
-                
-                
+
+
                 var samcheock = new naver.maps.Polygon({
                     map: map,
                     paths: [
@@ -1077,17 +1030,17 @@
                  new naver.maps.LatLng(37.20925183403373, 129.35025167196912),
                  new naver.maps.LatLng(37.17491672328894, 129.34395715744583),
                  new naver.maps.LatLng(37.143500012556274, 129.36640532794073),
-                             
+
                         ]
-                        
+
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
                     fillOpacity: 0.5,
-                
+
                 });
-                
-                
+
+
                 var sokcho = new naver.maps.Polygon({
                     map: map,
                     paths: [
@@ -1111,17 +1064,17 @@
                  new naver.maps.LatLng(38.14839370939287, 128.44448524115805),
                  new naver.maps.LatLng(38.174826368731615, 128.42205869512358),
                  new naver.maps.LatLng(38.199601060345735, 128.44411061547473),
-                             
+
                         ]
-                        
+
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
                     fillOpacity: 0.5,
-                
+
                 });
-                
-                
+
+
                 var taebaek = new naver.maps.Polygon({
                     map: map,
                     paths: [
@@ -1162,17 +1115,17 @@
                  new naver.maps.LatLng(37.13557625284613, 129.09785040668893),
                  new naver.maps.LatLng(37.111361583677265, 129.08994337778933),
                  new naver.maps.LatLng(37.09759661766801, 129.09808079870996),
-                             
+
                         ]
-                        
+
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
                     fillOpacity: 0.5,
-                
+
                 });
-                
-                
+
+
                 var donghae = new naver.maps.Polygon({
                     map: map,
                     paths: [
@@ -1200,15 +1153,15 @@
                  new naver.maps.LatLng(37.57316528128102, 129.05298764340807),
                  new naver.maps.LatLng(37.60326071209432, 129.07533176628823),
                         ]
-                        
+
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
                     fillOpacity: 0.5,
-                
+
                 });
-                
-                
+
+
                 var gangreung = new naver.maps.Polygon({
                     map: map,
                     paths: [
@@ -1266,18 +1219,18 @@
                  new naver.maps.LatLng(37.6403841663865, 129.04655214475338),
                  new naver.maps.LatLng(37.61863634503708, 129.05659089747815),
                  new naver.maps.LatLng(37.60326071209432, 129.07533176628823),
-                
-                             
+
+
                         ]
-                        
+
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
                     fillOpacity: 0.5,
-                
+
                 });
-                
-                
+
+
                 var wonju = new naver.maps.Polygon({
                     map: map,
                     paths: [
@@ -1338,9 +1291,9 @@
                  new naver.maps.LatLng(37.36421926003675, 127.76165381178268),
                  new naver.maps.LatLng(37.368441789396854, 127.77952402154285),
                  new naver.maps.LatLng(37.432516049235865, 127.80397287036232),
-                             
+
                         ]
-                        
+
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
@@ -1349,9 +1302,9 @@
                         ///////////////////////////////////////////////////////////////////////////
                         ////////////////////////클릭속성///////////////////////////////////////////
                         //////////////////////////////////////////////////////////////////////////
-                        
-                
-                function addMarker(z, y, x) 
+
+
+                function addMarker(z, y, x)
                 {
                     var position = new naver.maps.LatLng(y, x);
                     var markerOptions = // new naver.maps.Marker(
@@ -1359,9 +1312,9 @@
                         position: position.destinationPoint(90, 15),
                         map: map
                     };
-                    
+
                     var marker = new naver.maps.Marker(markerOptions);
-                
+
                     var contentString = [
                         '<div class="iw_inner">',
                         '   <h3>'+z+'</h3>',
@@ -1373,7 +1326,7 @@
                         '   </p>',
                         '</div>'
                     ].join('');
-                
+
                     var infowindow = new naver.maps.InfoWindow({
                         content: contentString,
                         maxWidth: 140,
@@ -1385,7 +1338,7 @@
                         anchorColor: "#eee",
                         pixelOffset: new naver.maps.Point(20, -20)
                     });
-                
+
                     naver.maps.Event.addListener(marker, "click", function(e) {
                         //rect.setBounds(bounds);
                         if (infowindow.getMap()) {
@@ -1394,46 +1347,46 @@
                             infowindow.open(map, marker);
                         }
                     });
-                
+
                     marker.setMap(map);
                 }
-                
-                
+
+
                 d3.csv("/static/gangwon.csv", function(data){
                    console.log(data[0]);
                     csvmake(data);
                     console.log(data);
                 });
-                
+
                 function csvmake(data){
                     for (var i=0, ii=data.length; i<ii; i++) {
                         addMarker(data[i].name,data[i].yi,data[i].ky);
                     }
                 }
-                
-                
-                
-                
+
+
+
+
                 /*
-                
+
                     naver.maps.Event.addListener(pyungchang, "mouseover", function(e) {
                         map.setCursor("pointer");
-                
+
                         pyungchang.setOptions({
                             fillOpacity: 0.3
                         });
-                        
+
                     });
-                
+
                     naver.maps.Event.addListener(pyungchang, "mouseout", function(e) {
                         map.setCursor("auto");
-                
+
                         pyungchang.setOptions({
                             fillOpacity: 0.4
                         });
                     });
                 */
-                
+
                 </script>
 
 <br><br><br><hr><br><br><br>
@@ -1466,12 +1419,10 @@
 
     <br><hr>
 
-    <div id="chart_div"></div>
-
     <br><hr>
 
     <a href="{% url 'country:index'%}">index page로 이동</a>
-    
+
     <br><br><br><br>
 
     <script src="//code.jquery.com/jquery.min.js"></script>
@@ -1496,10 +1447,10 @@
         $("input[name=고성군]").length;
         $("input[name=양양군]").length;
 
-      
+
     </script>
 
-    </script>   
+    </script>
 
     </body>
 </html>

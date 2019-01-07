@@ -7,4 +7,5 @@ urlpatterns=[
     path('', views.index, name='index'),
     path('result/', views.result, name='result'),
     path('search/', views.searching, name='search'),
+    path('myChart/', views.chart, name='myChart'),
 ]

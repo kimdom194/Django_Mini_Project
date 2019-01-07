@@ -3,6 +3,7 @@ from django.views.generic import ListView
 from django.views.generic import DetailView
 from django.shortcuts import render
 import json
+from django.http import JsonResponse
 
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
@@ -47,24 +48,36 @@ def searching(request):
 
 
 def result(request):
-    print("infotest", testtest)
-    print("---------result()-------------")
-    rank1 = request.POST['rankForm1']
-    print('입력된 1순위 : ', rank1)
+     try:
+          print("infotest", testtest)
+          print("---------result()-------------")
+          rank1 = request.POST['rankForm1']
+          print('입력된 1순위 : ', rank1)
 
-    rank2 = request.POST['rankForm2']
-    print('입력된 2순위 : ', rank2)
+          rank2 = request.POST['rankForm2']
+          print('입력된 2순위 : ', rank2)
 
-    rank3 = request.POST['rankForm3']
-    print('입력된 3순위 : ', rank3)
+          rank3 = request.POST['rankForm3']
+          print('입력된 3순위 : ', rank3)
 
-    dong = testtest.order_by(rank1, rank2, rank3)[:10]
-<<<<<<< HEAD
+          dong = testtest.order_by(rank1, rank2, rank3)[:10]
+          context = {'dong': dong}
+          return render(request, 'country/result.html', context)
+          
+     except(KeyError):
+          return render(request, {'error_message' : '우선순위 입력은 필수 입니다.'})
 
-=======
     
->>>>>>> 25aa6f91511aea691dae5ba91f699e0664bb9fbc
-    context = {'dong':dong}
-    print(context)
-    # return render(request, 'country/result.html')
-    return render(request, 'country/result.html', context)
+
+
+def chart(request):
+     print("------chart()------")
+     data = Dong_data.objects.values('city', 'medical', 'school', 'house')
+     print('기본데이터: ', data)
+     print(data.value)
+     context = {'data': data}
+     print('context데이터랍니다 : ', context)
+
+
+     return JsonResponse({'result' : list(data)})
+
