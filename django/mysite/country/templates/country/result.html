@@ -8,9 +8,15 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding">
+        <link rel="stylesheet" href="/static/style.css" type='text/css'>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>강원도 행정구역 지도</title>
@@ -19,7 +25,16 @@
     <div id="map" style="margin:0 auto; width:80%;height:650px;"></div>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
-
+    <style>
+            body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+            .w3-row-padding img {margin-bottom: 12px}
+            /* Set the width of the sidebar to 120px */
+            .w3-sidebar {width: 120px;background: #222;}
+            /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+            #main {margin-left: 120px}
+            /* Remove margins from "page content" on small screens */
+            @media only screen and (max-width: 600px) {#main {margin-left: 0}}
+            </style>
 <!-- 차트 개발 아직 못함 따흑-->
 <!-- 
     
@@ -58,581 +73,809 @@
     }
     </script>
     -->
-=======
+
   </script>
   
->>>>>>> 25aa6f91511aea691dae5ba91f699e0664bb9fbc
-=======
+
+
   </script>
   
->>>>>>> 25aa6f91511aea691dae5ba91f699e0664bb9fbc
+
 </head>
 
 <body>
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+                    <!-- Avatar image in top left corner -->
+                    <img src="{% static 'tomato.png' %}" style="width:100%"/>
+                    <a href="/country/" class="w3-bar-item w3-button w3-padding-large w3-black">
+                      <i class="fa fa-home w3-xxlarge"></i>
+                      <p>HOME</p>
+                    </a>
+                  </nav>  
 
-        <script>
-
+                  <form name = 'table_final'>
+                        <div class="container">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <td><B>시군구동읍면</B></td>
+                                    <td><B>시군구</B></td>
+                                    <td><B>병원수</B></td>
+                                    <td><B>학교수</B></td>
+                                    <td><B>평당가격(10만원)</B></td>
+                                </tr>
+                                </thead>
+                        
+                                <tbody>
+                                {% for dong_data in dong %}
+                                <tr>
+                        
+                                    <td>{{dong_data.dong}}</td>
+                                    <td>{{dong_data.city}}</td>
+                                    <td>{{dong_data.medical}}</td>
+                                    <td>{{dong_data.school}}</td>
+                                    <td>{{dong_data.house}}</td>
+                                    <input type="hidden" class="city" name="{{dong_data.city}}" >
+                                  
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                        </table>
+        
+                       
+                </form>
+        
+            <script>
+        
+            window.onload = function(){
+        
+        
+                try{
+                var one_col = table_final.원주시.length     
+                if(one_col == undefined){
+                    one_col = 1;
+                }one_col = one_col/10.0;
+                }catch{
+                    one_col = 0
+                }
+                console.log(one_col)
+        
+                try{
+                var chun_col = table_final.춘천시.length     
+                if(chun_col == undefined){
+                    chun_col = 1;
+                }chun_col = chun_col/10.0;
+                }catch{
+                    chun_col = 0
+                }
+                console.log(chun_col)
+                
+                try{
+                var yanggu_col = table_final.양구군.length     
+                if(yanggu_col == undefined){
+                    yanggu_col = 1;
+                }yanggu_col = yanggu_col/10.0;
+                }catch{
+                    yanggu_col = 0
+                }
+                console.log(yanggu_col)
+        
+                try{
+                var hwa_col = table_final.화천군.length     
+                if(hwa_col == undefined){
+                    hwa_col = 1;
+                }hwa_col = hwa_col/10.0;
+                }catch{
+                    hwa_col = 0
+                }
+                console.log(hwa_col)
+        
+                try{
+                var chul_col = table_final.철원군.length     
+                if(chul_col == undefined){
+                    chul_col = 1;
+                }chul_col = chul_col/10.0;
+                }catch{
+                    chul_col = 0
+                }
+                console.log(chul_col)
+                
+                try{
+                var yang_col = table_final.양양군.length     
+                if(yang_col == undefined){
+                    yang_col = 1;
+                }yang_col = yang_col/10.0;
+                }catch{
+                    yang_col = 0
+                }
+                console.log(yang_col)
+        
+                try{
+                var go_col = table_final.고성군.length     
+                if(go_col == undefined){
+                    go_col = 1;
+                }go_col = go_col/10.0;
+                }catch{
+                    go_col = 0
+                }
+                console.log(go_col)
+        
+                try{
+                var in_col = table_final.인제군.length     
+                if(in_col == undefined){
+                    in_col = 1;
+                }in_col = in_col/10.0;
+                }catch{
+                    in_col = 0
+                }
+                console.log(in_col)
+        
+                try{
+                var jung_col = table_final.정선군.length     
+                if(jung_col == undefined){
+                    jung_col = 1;
+                }jung_col = jung_col/10.0;
+                }catch{
+                    jung_col = 0
+                }
+                console.log(jung_col)
+        
+                try{
+                var pyeng_col = table_final.평창군.length     
+                if(pyeng_col == undefined){
+                    pyeng_col = 1;
+                }pyeng_col = pyeng_col/10.0;
+                }catch{
+                    pyeng_col = 0
+                }
+                console.log(pyeng_col)
+        
+                try{
+                var yung_col = table_final.영월군.length     
+                if(yung_col == undefined){
+                    yung_col = 1;
+                }yung_col = yung_col/10.0;
+                }catch{
+                    yung_col = 0
+                }
+                console.log(yung_col)
+        
+        
+                try{
+                var hweng_col = table_final.횡성군.length     
+                if(hweng_col == undefined){
+                    hweng_col = 1;
+                }hweng_col = hweng_col/10.0;
+                }catch{
+                    hweng_col = 0
+                }
+                console.log(hweng_col)
+        
+                try{
+                var hong_col = table_final.홍천군.length     
+                if(hong_col == undefined){
+                    hong_col = 1;
+                }hong_col = hong_col/10.0;
+                }catch{
+                    hong_col = 0
+                }
+                console.log(hong_col)
+                
+                try{
+                var sam_col = table_final.삼척시.length     
+                if(sam_col == undefined){
+                    sam_col = 1;
+                }sam_col = sam_col/10.0;
+                }catch{
+                    sam_col = 0
+                }
+                console.log(sam_col)
+                
+                try{
+                var sok_col = table_final.속초시.length     
+                if(sok_col == undefined){
+                    sok_col = 1;
+                }sok_col = sok_col/10.0;
+                }catch{
+                    sok_col = 0
+                }
+                console.log(sok_col)
+        
+        
+                try{
+                var tae_col = table_final.태백시.length     
+                if(tae_col == undefined){
+                    tae_col = 1;
+                }tae_col = tae_col/10.0;
+                }catch{
+                    tae_col = 0
+                }
+                console.log(tae_col)
+        
+                try{
+                var dong_col = table_final.동해시.length     
+                if(dong_col == undefined){
+                    dong_col = 1;
+                }dong_col = dong_col/10.0;
+                }catch{
+                    dong_col = 0
+                }
+                console.log(dong_col)
+        
+                try{
+                var gang_col = table_final.강릉시.length     
+                if(gang_col == undefined){
+                    gang_col = 1;
+                }gang_col = gang_col/10.0;
+                }catch{
+                    gang_col = 0
+                }
+                console.log(gang_col)
+        
+        
                 var HOME_PATH = window.HOME_PATH || '.';
                 var position = new naver.maps.LatLng(37.9082504, 127.7247803);
-                
+                        
                 var map = new naver.maps.Map('map', {
-                        center: position,
-                        zoom: 3
-                    });
-                infowindow = null;
-                
-                var chooncheon = new naver.maps.Polygon({
-                    map: map,
-                    paths: [
-                        [     //춘천시
-                                new naver.maps.LatLng(38.02267336405278, 127.90992911076903),
-                                new naver.maps.LatLng(38.01158141493871, 127.93847798295484),
-                                new naver.maps.LatLng(38.03697336372639, 127.95690714136997),
-                                new naver.maps.LatLng(38.02469814704712, 127.98798457674702),
-                                new naver.maps.LatLng(38.01064911732634, 127.98613993758414),
-                                new naver.maps.LatLng(38.01182855801719, 128.03136564956623),
-                                new naver.maps.LatLng(37.99791182870822, 128.02105487068408),
-                                new naver.maps.LatLng(37.98780535896831, 127.98535361000596),
-                                new naver.maps.LatLng(37.954401399270026, 127.97950583954581),
-                                new naver.maps.LatLng(37.939914305775346, 127.99563401097652),
-                                new naver.maps.LatLng(37.92740075127829, 127.99446898014068),
-                                new naver.maps.LatLng(37.89590321649898, 127.97298472845921),
-                                new naver.maps.LatLng(37.87985132686562, 127.97531659768038),
-                                new naver.maps.LatLng(37.86825605446081, 127.95774759879033),
-                                new naver.maps.LatLng(37.83572601201853, 127.94712274110832),
-                                new naver.maps.LatLng(37.82381565832718, 127.93364203651527),
-                                new naver.maps.LatLng(37.85260409167092, 127.91016125972182),
-                                new naver.maps.LatLng(37.85366304881653, 127.87866565010799),
-                                new naver.maps.LatLng(37.833703977394585, 127.8716689318658),
-                                new naver.maps.LatLng(37.83270786492856, 127.85044310937559),
-                                new naver.maps.LatLng(37.84300122110585, 127.82474493345237),
-                                new naver.maps.LatLng(37.79524205674763, 127.82696731850874),
-                                new naver.maps.LatLng(37.76515858350443, 127.85940408260672),
-                                new naver.maps.LatLng(37.7370386447401, 127.83306545245021),
-                                new naver.maps.LatLng(37.745655006997815, 127.81828113039789),
-                                new naver.maps.LatLng(37.732524457948166, 127.80217993646568),
-                                new naver.maps.LatLng(37.73869994737419, 127.74941135227976),
-                                new naver.maps.LatLng(37.72395097455562, 127.71247169389578),
-                                new naver.maps.LatLng(37.69800161940154, 127.68642534367494),
-                                new naver.maps.LatLng(37.69718282859908, 127.66132930342457),
-                                new naver.maps.LatLng(37.68846288538717, 127.62533829853272),
-                                new naver.maps.LatLng(37.70215911214177, 127.59603371539511),
-                                new naver.maps.LatLng(37.72274153360826, 127.5913122929288),
-                                new naver.maps.LatLng(37.72573118147031, 127.5620152520609),
-                                new naver.maps.LatLng(37.71630823574417, 127.54295591487076),
-                                new naver.maps.LatLng(37.72791553253582, 127.50979807707056),
-                                new naver.maps.LatLng(37.757547899640265, 127.5466892772679),
-                                new naver.maps.LatLng(37.788564076302706, 127.52374487270039),
-                                new naver.maps.LatLng(37.806297142430786, 127.53790811514408),
-                                new naver.maps.LatLng(37.8205934650677, 127.5278056459557),
-                                new naver.maps.LatLng(37.8391134107185, 127.53467866263196),
-                                new naver.maps.LatLng(37.852710085354005, 127.5645808687282),
-                                new naver.maps.LatLng(37.87296654527047, 127.586513542654),
-                                new naver.maps.LatLng(37.87185797528634, 127.60326048844294),
-                                new naver.maps.LatLng(37.90376621474279, 127.61988365348992),
-                                new naver.maps.LatLng(37.93662873141094, 127.61592274592837),
-                                new naver.maps.LatLng(37.95233960186072, 127.60515472290533),
-                                new naver.maps.LatLng(37.96536690082484, 127.54648191805605),
-                                new naver.maps.LatLng(37.99843118565868, 127.54189684816376),
-                                new naver.maps.LatLng(38.01680714656708, 127.54653723954567),
-                                new naver.maps.LatLng(38.01922793024913, 127.5656557065338),
-                                new naver.maps.LatLng(38.0370740116591, 127.58077469182042),
-                                new naver.maps.LatLng(38.08158184858848, 127.56982538824722),
-                                new naver.maps.LatLng(38.07767290454846, 127.59984859977426),
-                                new naver.maps.LatLng(38.04797354991021, 127.62838488758442),
-                                new naver.maps.LatLng(38.05068008728069, 127.65483889554376),
-                                new naver.maps.LatLng(38.02157157305178, 127.65460190048098),
-                                new naver.maps.LatLng(38.03350430882976, 127.67932449696467),
-                                new naver.maps.LatLng(38.03541241759278, 127.70223952451865),
-                                new naver.maps.LatLng(38.02153747223811, 127.71537531921938),
-                                new naver.maps.LatLng(38.03587186750608, 127.74035586342232),
-                                new naver.maps.LatLng(38.02446054871692, 127.77192941601814),
-                                new naver.maps.LatLng(37.990446495163376, 127.79613326641274),
-                                new naver.maps.LatLng(37.9979586592876, 127.82925018484723),
-                                new naver.maps.LatLng(38.01556103947868, 127.85979071697689),
-                                new naver.maps.LatLng(38.04851498801749, 127.85518278921059),
-                                new naver.maps.LatLng(38.04815092000516, 127.90579626302805),
-                             
-                        ]
-                
-                    ],
-                    clickable: true,
-                    fillColor: '#00FF00',
-                    fillOpacity: 0.5,
-                });
-                
-                
-                var yangyang = new naver.maps.Polygon({
-                    map: map,
-                    paths: [
-                        [     //양양군
-                new naver.maps.LatLng(38.15831275424904, 128.61133667019794),
-                 new naver.maps.LatLng(38.148382334956196, 128.6118543841453),
-                 new naver.maps.LatLng(38.113659593813, 128.63816296879122),
-                 new naver.maps.LatLng(38.08921719382843, 128.66944552450926),
-                 new naver.maps.LatLng(38.063060895530946, 128.6801698912563),
-                 new naver.maps.LatLng(38.02128268628485, 128.7286426173804),
-                 new naver.maps.LatLng(38.002463805060046, 128.73826174906955),
-                 new naver.maps.LatLng(37.9318050263611, 128.792716608794),
-                 new naver.maps.LatLng(37.91556888454482, 128.8123005055129),
-                 new naver.maps.LatLng(37.91013928833574, 128.80524441645574),
-                 new naver.maps.LatLng(37.905960787624906, 128.74856018856056),
-                 new naver.maps.LatLng(37.887173520772535, 128.67878853111114),
-                 new naver.maps.LatLng(37.88807695189855, 128.6505376422531),
-                 new naver.maps.LatLng(37.869097492348885, 128.6217276909704),
-                 new naver.maps.LatLng(37.85910972310769, 128.59009981030485),
-                 new naver.maps.LatLng(37.88838546601527, 128.54174917309217),
-                 new naver.maps.LatLng(37.87726587126626, 128.51465704316166),
-                 new naver.maps.LatLng(37.89034261001761, 128.48396045066394),
-                 new naver.maps.LatLng(37.897297861824654, 128.47581189051292),
-                 new naver.maps.LatLng(37.922603310593686, 128.47728584920637),
-                 new naver.maps.LatLng(37.93276958805915, 128.46564466540386),
-                 new naver.maps.LatLng(37.960019597750055, 128.47967169107102),
-                 new naver.maps.LatLng(37.96446783658907, 128.4991388666651),
-                 new naver.maps.LatLng(37.980794884779975, 128.49844842739043),
-                 new naver.maps.LatLng(38.00221816716901, 128.51440771907983),
-                 new naver.maps.LatLng(38.05071213538417, 128.48583112231915),
-                 new naver.maps.LatLng(38.045961550640115, 128.47452433126722),
-                 new naver.maps.LatLng(38.06031293138297, 128.41702095861382),
-                 new naver.maps.LatLng(38.093637133932056, 128.40637551736762),
-                 new naver.maps.LatLng(38.10678299610833, 128.42979883947874),
-                 new naver.maps.LatLng(38.11674533755288, 128.46761847483637),
-                 new naver.maps.LatLng(38.13531189048726, 128.49406756561297),
-                 new naver.maps.LatLng(38.134133693985106, 128.53200917076896),
-                 new naver.maps.LatLng(38.145601072426906, 128.53680368368163),
-                 new naver.maps.LatLng(38.146412841728754, 128.5616628397355),
-                 new naver.maps.LatLng(38.158021595850855, 128.57285700525713),
-                 new naver.maps.LatLng(38.15831275424904, 128.61133667019794),
-                
-                             
-                        ]
+                                center: position,
+                                zoom: 3
+                            });
+                        infowindow = null;
                         
-                    ],
-                    clickable: true,
-                    fillColor: '#00FF00',
-                    fillOpacity: 0.5,
-                
-                });
-                
-                
-                
-                var gosung = new naver.maps.Polygon({
-                    map: map,
-                    paths: [
-                        [     //고성군
-                 new naver.maps.LatLng(38.37495528548392, 128.2061720001211),
-                 new naver.maps.LatLng(38.39981806731884, 128.24528007108742),
-                 new naver.maps.LatLng(38.409935119769564, 128.2512355964118),
-                 new naver.maps.LatLng(38.432558792744565, 128.28445123413462),
-                 new naver.maps.LatLng(38.46934716084635, 128.3036664995331),
-                 new naver.maps.LatLng(38.561777330937126, 128.31751658922644),
-                 new naver.maps.LatLng(38.5893217913146, 128.31310600046916),
-                 new naver.maps.LatLng(38.60689831086401, 128.3234946946747),
-                 new naver.maps.LatLng(38.61100860865129, 128.35328522290698),
-                 new naver.maps.LatLng(38.56445924464448, 128.3994243084971),
-                 new naver.maps.LatLng(38.53887499776193, 128.40839242284525),
-                 new naver.maps.LatLng(38.51983037135328, 128.42554397018958),
-                 new naver.maps.LatLng(38.50338592729907, 128.4254912007594),
-                 new naver.maps.LatLng(38.47481560896285, 128.44229446121105),
-                 new naver.maps.LatLng(38.44865817250916, 128.4703927164287),
-                 new naver.maps.LatLng(38.42730174828724, 128.4604428666149),
-                 new naver.maps.LatLng(38.407731811414855, 128.47411498022078),
-                 new naver.maps.LatLng(38.36896225918823, 128.51804981754728),
-                 new naver.maps.LatLng(38.33567357545014, 128.52859406268013),
-                 new naver.maps.LatLng(38.311491252128306, 128.55331252809583),
-                 new naver.maps.LatLng(38.266133507320134, 128.57106417549218),
-                 new naver.maps.LatLng(38.239545249426804, 128.592173092594),
-                 new naver.maps.LatLng(38.22840016180288, 128.5871139677637),
-                 new naver.maps.LatLng(38.21922571508261, 128.57646840597573),
-                 new naver.maps.LatLng(38.21322851162471, 128.5354865880569),
-                 new naver.maps.LatLng(38.20043328192758, 128.50300912368212),
-                 new naver.maps.LatLng(38.18648727874053, 128.48877421538748),
-                 new naver.maps.LatLng(38.199601060345735, 128.44411061547473),
-                 new naver.maps.LatLng(38.23631971139854, 128.44158372716655),
-                 new naver.maps.LatLng(38.25163303194543, 128.4198436114189),
-                 new naver.maps.LatLng(38.245488863989394, 128.3902877170299),
-                 new naver.maps.LatLng(38.23460789711334, 128.36975263785666),
-                 new naver.maps.LatLng(38.2609048829424, 128.36087591164377),
-                 new naver.maps.LatLng(38.26338194356999, 128.32127556718933),
-                 new naver.maps.LatLng(38.29743225884543, 128.32274760309596),
-                 new naver.maps.LatLng(38.32572252274606, 128.31082166712574),
-                 new naver.maps.LatLng(38.331826174792994, 128.2924255077059),
-                 new naver.maps.LatLng(38.32170265416708, 128.2674471697584),
-                 new naver.maps.LatLng(38.357611533756746, 128.2461987980439),
-                 new naver.maps.LatLng(38.37495528548392, 128.2061720001211)
-                
-                             
-                        ]
+                        var chooncheon = new naver.maps.Polygon({
+                            map: map,
+                            paths: [
+                                [     //춘천시
+                                        new naver.maps.LatLng(38.02267336405278, 127.90992911076903),
+                                        new naver.maps.LatLng(38.01158141493871, 127.93847798295484),
+                                        new naver.maps.LatLng(38.03697336372639, 127.95690714136997),
+                                        new naver.maps.LatLng(38.02469814704712, 127.98798457674702),
+                                        new naver.maps.LatLng(38.01064911732634, 127.98613993758414),
+                                        new naver.maps.LatLng(38.01182855801719, 128.03136564956623),
+                                        new naver.maps.LatLng(37.99791182870822, 128.02105487068408),
+                                        new naver.maps.LatLng(37.98780535896831, 127.98535361000596),
+                                        new naver.maps.LatLng(37.954401399270026, 127.97950583954581),
+                                        new naver.maps.LatLng(37.939914305775346, 127.99563401097652),
+                                        new naver.maps.LatLng(37.92740075127829, 127.99446898014068),
+                                        new naver.maps.LatLng(37.89590321649898, 127.97298472845921),
+                                        new naver.maps.LatLng(37.87985132686562, 127.97531659768038),
+                                        new naver.maps.LatLng(37.86825605446081, 127.95774759879033),
+                                        new naver.maps.LatLng(37.83572601201853, 127.94712274110832),
+                                        new naver.maps.LatLng(37.82381565832718, 127.93364203651527),
+                                        new naver.maps.LatLng(37.85260409167092, 127.91016125972182),
+                                        new naver.maps.LatLng(37.85366304881653, 127.87866565010799),
+                                        new naver.maps.LatLng(37.833703977394585, 127.8716689318658),
+                                        new naver.maps.LatLng(37.83270786492856, 127.85044310937559),
+                                        new naver.maps.LatLng(37.84300122110585, 127.82474493345237),
+                                        new naver.maps.LatLng(37.79524205674763, 127.82696731850874),
+                                        new naver.maps.LatLng(37.76515858350443, 127.85940408260672),
+                                        new naver.maps.LatLng(37.7370386447401, 127.83306545245021),
+                                        new naver.maps.LatLng(37.745655006997815, 127.81828113039789),
+                                        new naver.maps.LatLng(37.732524457948166, 127.80217993646568),
+                                        new naver.maps.LatLng(37.73869994737419, 127.74941135227976),
+                                        new naver.maps.LatLng(37.72395097455562, 127.71247169389578),
+                                        new naver.maps.LatLng(37.69800161940154, 127.68642534367494),
+                                        new naver.maps.LatLng(37.69718282859908, 127.66132930342457),
+                                        new naver.maps.LatLng(37.68846288538717, 127.62533829853272),
+                                        new naver.maps.LatLng(37.70215911214177, 127.59603371539511),
+                                        new naver.maps.LatLng(37.72274153360826, 127.5913122929288),
+                                        new naver.maps.LatLng(37.72573118147031, 127.5620152520609),
+                                        new naver.maps.LatLng(37.71630823574417, 127.54295591487076),
+                                        new naver.maps.LatLng(37.72791553253582, 127.50979807707056),
+                                        new naver.maps.LatLng(37.757547899640265, 127.5466892772679),
+                                        new naver.maps.LatLng(37.788564076302706, 127.52374487270039),
+                                        new naver.maps.LatLng(37.806297142430786, 127.53790811514408),
+                                        new naver.maps.LatLng(37.8205934650677, 127.5278056459557),
+                                        new naver.maps.LatLng(37.8391134107185, 127.53467866263196),
+                                        new naver.maps.LatLng(37.852710085354005, 127.5645808687282),
+                                        new naver.maps.LatLng(37.87296654527047, 127.586513542654),
+                                        new naver.maps.LatLng(37.87185797528634, 127.60326048844294),
+                                        new naver.maps.LatLng(37.90376621474279, 127.61988365348992),
+                                        new naver.maps.LatLng(37.93662873141094, 127.61592274592837),
+                                        new naver.maps.LatLng(37.95233960186072, 127.60515472290533),
+                                        new naver.maps.LatLng(37.96536690082484, 127.54648191805605),
+                                        new naver.maps.LatLng(37.99843118565868, 127.54189684816376),
+                                        new naver.maps.LatLng(38.01680714656708, 127.54653723954567),
+                                        new naver.maps.LatLng(38.01922793024913, 127.5656557065338),
+                                        new naver.maps.LatLng(38.0370740116591, 127.58077469182042),
+                                        new naver.maps.LatLng(38.08158184858848, 127.56982538824722),
+                                        new naver.maps.LatLng(38.07767290454846, 127.59984859977426),
+                                        new naver.maps.LatLng(38.04797354991021, 127.62838488758442),
+                                        new naver.maps.LatLng(38.05068008728069, 127.65483889554376),
+                                        new naver.maps.LatLng(38.02157157305178, 127.65460190048098),
+                                        new naver.maps.LatLng(38.03350430882976, 127.67932449696467),
+                                        new naver.maps.LatLng(38.03541241759278, 127.70223952451865),
+                                        new naver.maps.LatLng(38.02153747223811, 127.71537531921938),
+                                        new naver.maps.LatLng(38.03587186750608, 127.74035586342232),
+                                        new naver.maps.LatLng(38.02446054871692, 127.77192941601814),
+                                        new naver.maps.LatLng(37.990446495163376, 127.79613326641274),
+                                        new naver.maps.LatLng(37.9979586592876, 127.82925018484723),
+                                        new naver.maps.LatLng(38.01556103947868, 127.85979071697689),
+                                        new naver.maps.LatLng(38.04851498801749, 127.85518278921059),
+                                        new naver.maps.LatLng(38.04815092000516, 127.90579626302805),
+                                     
+                                ]
                         
-                    ],
-                    clickable: true,
-                    fillColor: '#00FF00',
-                    fillOpacity: 0.5,
-                
-                });
-                
-                
-                var inje = new naver.maps.Polygon({
-                    map: map,
-                    paths: [
-                        [     //인제군
-                
-                new naver.maps.LatLng(38.338006015888745, 128.12544185956497),
-                new naver.maps.LatLng(38.37495528548392, 128.2061720001211),
-                new naver.maps.LatLng(38.357611533756746, 128.2461987980439),
-                new naver.maps.LatLng(38.32170265416708, 128.2674471697584),
-                new naver.maps.LatLng(38.331826174792994, 128.2924255077059),
-                new naver.maps.LatLng(38.32572252274606, 128.31082166712574),
-                new naver.maps.LatLng(38.29743225884543, 128.32274760309596),
-                new naver.maps.LatLng(38.26338194356999, 128.32127556718933),
-                new naver.maps.LatLng(38.2609048829424, 128.36087591164377),
-                new naver.maps.LatLng(38.23460789711334, 128.36975263785666),
-                new naver.maps.LatLng(38.245488863989394, 128.3902877170299),
-                new naver.maps.LatLng(38.25163303194543, 128.4198436114189),
-                new naver.maps.LatLng(38.23631971139854, 128.44158372716655),
-                new naver.maps.LatLng(38.199601060345735, 128.44411061547473),
-                new naver.maps.LatLng(38.174826368731615, 128.42205869512358),
-                new naver.maps.LatLng(38.14839370939287, 128.44448524115805),
-                new naver.maps.LatLng(38.1351242130816, 128.46727503977746),
-                new naver.maps.LatLng(38.11674533755288, 128.46761847483637),
-                new naver.maps.LatLng(38.10678299610833, 128.42979883947874),
-                new naver.maps.LatLng(38.093637133932056, 128.40637551736762),
-                new naver.maps.LatLng(38.06031293138297, 128.41702095861382),
-                new naver.maps.LatLng(38.045961550640115, 128.47452433126722),
-                new naver.maps.LatLng(38.05071213538417, 128.48583112231915),
-                new naver.maps.LatLng(38.00221816716901, 128.51440771907983),
-                new naver.maps.LatLng(37.980794884779975, 128.49844842739043),
-                new naver.maps.LatLng(37.96446783658907, 128.4991388666651),
-                new naver.maps.LatLng(37.960019597750055, 128.47967169107102),
-                new naver.maps.LatLng(37.93276958805915, 128.46564466540386),
-                new naver.maps.LatLng(37.922603310593686, 128.47728584920637),
-                new naver.maps.LatLng(37.897297861824654, 128.47581189051292),
-                new naver.maps.LatLng(37.89034261001761, 128.48396045066394),
-                new naver.maps.LatLng(37.861347105061064, 128.4379745125403),
-                new naver.maps.LatLng(37.88184799446629, 128.4156517025131),
-                new naver.maps.LatLng(37.859108824510365, 128.40319992827898),
-                new naver.maps.LatLng(37.84441653254173, 128.36849691929913),
-                new naver.maps.LatLng(37.83045428969843, 128.36667823587985),
-                new naver.maps.LatLng(37.82265015013752, 128.34818622572138),
-                new naver.maps.LatLng(37.84064524912735, 128.3096504298611),
-                new naver.maps.LatLng(37.86713846242429, 128.29594265718364),
-                new naver.maps.LatLng(37.85364867245336, 128.2636983262254),
-                new naver.maps.LatLng(37.83359360627233, 128.25639546797603),
-                new naver.maps.LatLng(37.80956289367274, 128.21109596870605),
-                new naver.maps.LatLng(37.83097192358949, 128.18284900676593),
-                new naver.maps.LatLng(37.848612454317355, 128.1719512797252),
-                new naver.maps.LatLng(37.882185092516984, 128.1756059059635),
-                new naver.maps.LatLng(37.89263200015374, 128.16300577475445),
-                new naver.maps.LatLng(37.891055810015146, 128.13554298004433),
-                new naver.maps.LatLng(37.90040656665992, 128.082199870237),
-                new naver.maps.LatLng(37.92457725104821, 128.04191501731063),
-                new naver.maps.LatLng(37.94121335131434, 128.0315994134141),
-                new naver.maps.LatLng(37.939914305775346, 127.99563401097652),
-                new naver.maps.LatLng(37.954401399270026, 127.97950583954581),
-                new naver.maps.LatLng(37.98780535896831, 127.98535361000596),
-                new naver.maps.LatLng(37.99791182870822, 128.02105487068408),
-                new naver.maps.LatLng(38.01182855801719, 128.03136564956623),
-                new naver.maps.LatLng(38.02838087810227, 128.05864546339598),
-                new naver.maps.LatLng(38.044698244907345, 128.06480382596308),
-                new naver.maps.LatLng(38.02537380132126, 128.09783662073562),
-                new naver.maps.LatLng(38.04511830195399, 128.1201802955356),
-                new naver.maps.LatLng(38.06844335506837, 128.1150243250517),
-                new naver.maps.LatLng(38.08946481523189, 128.09144439601542),
-                new naver.maps.LatLng(38.11164551445177, 128.1056736851349),
-                new naver.maps.LatLng(38.135286489695034, 128.0902850087252),
-                new naver.maps.LatLng(38.18252456325575, 128.10732568065012),
-                new naver.maps.LatLng(38.19039568754391, 128.10031576379524),
-                new naver.maps.LatLng(38.20873077063554, 128.1210146563739),
-                new naver.maps.LatLng(38.23537386757981, 128.1235836125112),
-                new naver.maps.LatLng(38.25281197345482, 128.15277394556713),
-                new naver.maps.LatLng(38.27165114708075, 128.16222622055398),
-                new naver.maps.LatLng(38.31162734489978, 128.16707008670173),
-                new naver.maps.LatLng(38.32236608099283, 128.15874211138745),
-                new naver.maps.LatLng(38.32422054669592, 128.12556335685483),
-                new naver.maps.LatLng(38.338006015888745, 128.12544185956497),
-                             
-                        ]
+                            ],
+                            clickable: true,
+                            fillColor: '#00FF00',
+        
+                            fillOpacity: chun_col,
+        
+                        });
                         
-                    ],
-                    clickable: true,
-                    fillColor: '#00FF00',
-                    fillOpacity: 0.5,
-                
-                });
-                
-                
-                var yanggoo = new naver.maps.Polygon({
-                    map: map,
-                    paths: [
-                        [     // 양구군
-                 new naver.maps.LatLng(38.32422986348101, 127.82637643749516),
-                 new naver.maps.LatLng(38.329794594030304, 127.85782295700216),
-                 new naver.maps.LatLng(38.34088838765569, 127.88657503442515),
-                 new naver.maps.LatLng(38.33449051346327, 127.92761871378991),
-                 new naver.maps.LatLng(38.317734672863786, 127.97963325083941),
-                 new naver.maps.LatLng(38.31079695657796, 128.06568907482637),
-                 new naver.maps.LatLng(38.338006015888745, 128.12544185956497),
-                 new naver.maps.LatLng(38.32422054669592, 128.12556335685483),
-                 new naver.maps.LatLng(38.32236608099283, 128.15874211138745),
-                 new naver.maps.LatLng(38.31162734489978, 128.16707008670173),
-                 new naver.maps.LatLng(38.27165114708075, 128.16222622055398),
-                 new naver.maps.LatLng(38.25281197345482, 128.15277394556713),
-                 new naver.maps.LatLng(38.23537386757981, 128.1235836125112),
-                 new naver.maps.LatLng(38.20873077063554, 128.1210146563739),
-                 new naver.maps.LatLng(38.19039568754391, 128.10031576379524),
-                 new naver.maps.LatLng(38.18252456325575, 128.10732568065012),
-                 new naver.maps.LatLng(38.135286489695034, 128.0902850087252),
-                 new naver.maps.LatLng(38.11164551445177, 128.1056736851349),
-                 new naver.maps.LatLng(38.08946481523189, 128.09144439601542),
-                 new naver.maps.LatLng(38.06844335506837, 128.1150243250517),
-                 new naver.maps.LatLng(38.04511830195399, 128.1201802955356),
-                 new naver.maps.LatLng(38.02537380132126, 128.09783662073562),
-                 new naver.maps.LatLng(38.044698244907345, 128.06480382596308),
-                 new naver.maps.LatLng(38.02838087810227, 128.05864546339598),
-                 new naver.maps.LatLng(38.01182855801719, 128.03136564956623),
-                 new naver.maps.LatLng(38.01064911732634, 127.98613993758414),
-                 new naver.maps.LatLng(38.02469814704712, 127.98798457674702),
-                 new naver.maps.LatLng(38.03697336372639, 127.95690714136997),
-                 new naver.maps.LatLng(38.01158141493871, 127.93847798295484),
-                 new naver.maps.LatLng(38.02267336405278, 127.90992911076903),
-                 new naver.maps.LatLng(38.04815092000516, 127.90579626302805),
-                 new naver.maps.LatLng(38.055244623567475, 127.916497745342),
-                 new naver.maps.LatLng(38.09028897640301, 127.90249849268437),
-                 new naver.maps.LatLng(38.09972747064861, 127.88727700221195),
-                 new naver.maps.LatLng(38.11409294495618, 127.88875455743923),
-                 new naver.maps.LatLng(38.13358588483533, 127.87571302087167),
-                 new naver.maps.LatLng(38.16368388763941, 127.88341025366174),
-                 new naver.maps.LatLng(38.189033955041566, 127.87813236987974),
-                 new naver.maps.LatLng(38.20550445935387, 127.8550683285027),
-                 new naver.maps.LatLng(38.24965924406081, 127.85707539793698),
-                 new naver.maps.LatLng(38.32422986348101, 127.82637643749516)
-                             
-                        ]
                         
-                    ],
-                    clickable: true,
-                    fillColor: '#00FF00',
-                    fillOpacity: 0.5,
-                
-                });
-                
-                
-                var hwacheon = new naver.maps.Polygon({
-                    map: map,
-                    paths: [
-                        [     //화천군
-                new naver.maps.LatLng(38.337763566064, 127.61231986933076),
-                 new naver.maps.LatLng(38.32641122829497, 127.6405311098855),
-                 new naver.maps.LatLng(38.33044255011369, 127.6923691968367),
-                 new naver.maps.LatLng(38.34066482403415, 127.70210966666089),
-                 new naver.maps.LatLng(38.335021412806796, 127.73225360708118),
-                 new naver.maps.LatLng(38.345457809675636, 127.74891242190594),
-                 new naver.maps.LatLng(38.35105087169062, 127.77972374469796),
-                 new naver.maps.LatLng(38.32255842856815, 127.80445448811331),
-                 new naver.maps.LatLng(38.32422986348101, 127.82637643749516),
-                 new naver.maps.LatLng(38.24965924406081, 127.85707539793698),
-                 new naver.maps.LatLng(38.20550445935387, 127.8550683285027),
-                 new naver.maps.LatLng(38.189033955041566, 127.87813236987974),
-                 new naver.maps.LatLng(38.16368388763941, 127.88341025366174),
-                 new naver.maps.LatLng(38.13358588483533, 127.87571302087167),
-                 new naver.maps.LatLng(38.11409294495618, 127.88875455743923),
-                 new naver.maps.LatLng(38.09972747064861, 127.88727700221195),
-                 new naver.maps.LatLng(38.09028897640301, 127.90249849268437),
-                 new naver.maps.LatLng(38.055244623567475, 127.916497745342),
-                 new naver.maps.LatLng(38.04815092000516, 127.90579626302805),
-                 new naver.maps.LatLng(38.04851498801749, 127.85518278921059),
-                 new naver.maps.LatLng(38.01556103947868, 127.85979071697689),
-                 new naver.maps.LatLng(37.9979586592876, 127.82925018484723),
-                 new naver.maps.LatLng(37.990446495163376, 127.79613326641274),
-                 new naver.maps.LatLng(38.02446054871692, 127.77192941601814),
-                 new naver.maps.LatLng(38.03587186750608, 127.74035586342232),
-                 new naver.maps.LatLng(38.02153747223811, 127.71537531921938),
-                 new naver.maps.LatLng(38.03541241759278, 127.70223952451865),
-                 new naver.maps.LatLng(38.03350430882976, 127.67932449696467),
-                 new naver.maps.LatLng(38.02157157305178, 127.65460190048098),
-                 new naver.maps.LatLng(38.05068008728069, 127.65483889554376),
-                 new naver.maps.LatLng(38.04797354991021, 127.62838488758442),
-                 new naver.maps.LatLng(38.07767290454846, 127.59984859977426),
-                 new naver.maps.LatLng(38.08158184858848, 127.56982538824722),
-                 new naver.maps.LatLng(38.0370740116591, 127.58077469182042),
-                 new naver.maps.LatLng(38.01922793024913, 127.5656557065338),
-                 new naver.maps.LatLng(38.01680714656708, 127.54653723954567),
-                 new naver.maps.LatLng(37.99843118565868, 127.54189684816376),
-                 new naver.maps.LatLng(37.99680815824825, 127.50356426725331),
-                 new naver.maps.LatLng(38.00331531710267, 127.47430810833019),
-                 new naver.maps.LatLng(38.01348603532302, 127.46013793737187),
-                 new naver.maps.LatLng(38.048238751068475, 127.44780328408541),
-                 new naver.maps.LatLng(38.09506926769056, 127.44645416125843),
-                 new naver.maps.LatLng(38.11254491261849, 127.43271157644212),
-                 new naver.maps.LatLng(38.1213889072848, 127.44182413672914),
-                 new naver.maps.LatLng(38.122411952796156, 127.48448229417274),
-                 new naver.maps.LatLng(38.14558591200716, 127.50485682301644),
-                 new naver.maps.LatLng(38.1566839278515, 127.49271681540247),
-                 new naver.maps.LatLng(38.17195319204514, 127.50643860097115),
-                 new naver.maps.LatLng(38.196696153262536, 127.51462128107481),
-                 new naver.maps.LatLng(38.20817034772391, 127.53857624603158),
-                 new naver.maps.LatLng(38.22647488146212, 127.54387167999408),
-                 new naver.maps.LatLng(38.23670630294172, 127.56983497013793),
-                 new naver.maps.LatLng(38.25506695911593, 127.58106105048411),
-                 new naver.maps.LatLng(38.267235363360086, 127.59925430519995),
-                 new naver.maps.LatLng(38.28997426084708, 127.58557191128067),
-                 new naver.maps.LatLng(38.337763566064, 127.61231986933076),
-                             
-                        ]
+                        var yangyang = new naver.maps.Polygon({
+                            map: map,
+                            paths: [
+                                [     //양양군
+                        new naver.maps.LatLng(38.15831275424904, 128.61133667019794),
+                         new naver.maps.LatLng(38.148382334956196, 128.6118543841453),
+                         new naver.maps.LatLng(38.113659593813, 128.63816296879122),
+                         new naver.maps.LatLng(38.08921719382843, 128.66944552450926),
+                         new naver.maps.LatLng(38.063060895530946, 128.6801698912563),
+                         new naver.maps.LatLng(38.02128268628485, 128.7286426173804),
+                         new naver.maps.LatLng(38.002463805060046, 128.73826174906955),
+                         new naver.maps.LatLng(37.9318050263611, 128.792716608794),
+                         new naver.maps.LatLng(37.91556888454482, 128.8123005055129),
+                         new naver.maps.LatLng(37.91013928833574, 128.80524441645574),
+                         new naver.maps.LatLng(37.905960787624906, 128.74856018856056),
+                         new naver.maps.LatLng(37.887173520772535, 128.67878853111114),
+                         new naver.maps.LatLng(37.88807695189855, 128.6505376422531),
+                         new naver.maps.LatLng(37.869097492348885, 128.6217276909704),
+                         new naver.maps.LatLng(37.85910972310769, 128.59009981030485),
+                         new naver.maps.LatLng(37.88838546601527, 128.54174917309217),
+                         new naver.maps.LatLng(37.87726587126626, 128.51465704316166),
+                         new naver.maps.LatLng(37.89034261001761, 128.48396045066394),
+                         new naver.maps.LatLng(37.897297861824654, 128.47581189051292),
+                         new naver.maps.LatLng(37.922603310593686, 128.47728584920637),
+                         new naver.maps.LatLng(37.93276958805915, 128.46564466540386),
+                         new naver.maps.LatLng(37.960019597750055, 128.47967169107102),
+                         new naver.maps.LatLng(37.96446783658907, 128.4991388666651),
+                         new naver.maps.LatLng(37.980794884779975, 128.49844842739043),
+                         new naver.maps.LatLng(38.00221816716901, 128.51440771907983),
+                         new naver.maps.LatLng(38.05071213538417, 128.48583112231915),
+                         new naver.maps.LatLng(38.045961550640115, 128.47452433126722),
+                         new naver.maps.LatLng(38.06031293138297, 128.41702095861382),
+                         new naver.maps.LatLng(38.093637133932056, 128.40637551736762),
+                         new naver.maps.LatLng(38.10678299610833, 128.42979883947874),
+                         new naver.maps.LatLng(38.11674533755288, 128.46761847483637),
+                         new naver.maps.LatLng(38.13531189048726, 128.49406756561297),
+                         new naver.maps.LatLng(38.134133693985106, 128.53200917076896),
+                         new naver.maps.LatLng(38.145601072426906, 128.53680368368163),
+                         new naver.maps.LatLng(38.146412841728754, 128.5616628397355),
+                         new naver.maps.LatLng(38.158021595850855, 128.57285700525713),
+                         new naver.maps.LatLng(38.15831275424904, 128.61133667019794),
                         
-                    ],
-                    clickable: true,
-                    fillColor: '#00FF00',
-                    fillOpacity: 0.5,
-                
-                });
-                
-                
-                var cheolwon = new naver.maps.Polygon({
-                    map: map,
-                    paths: [
-                        [     //철원군
-                new naver.maps.LatLng(38.289324698353205, 127.1114029794941),
-                 new naver.maps.LatLng(38.307063260450114, 127.13947558528989),
-                 new naver.maps.LatLng(38.326436223439785, 127.14540227526314),
-                 new naver.maps.LatLng(38.331596279869494, 127.16141465259962),
-                 new naver.maps.LatLng(38.31445377390088, 127.18418004575682),
-                 new naver.maps.LatLng(38.316168942607554, 127.19892523685277),
-                 new naver.maps.LatLng(38.336010954921264, 127.24571863951539),
-                 new naver.maps.LatLng(38.32467857236815, 127.29615344291315),
-                 new naver.maps.LatLng(38.314184541079406, 127.31277284160804),
-                 new naver.maps.LatLng(38.32931655539827, 127.3404599714743),
-                 new naver.maps.LatLng(38.32626978690685, 127.35022489234048),
-                 new naver.maps.LatLng(38.337289972382514, 127.39008596472526),
-                 new naver.maps.LatLng(38.33162243842927, 127.42669271519789),
-                 new naver.maps.LatLng(38.31451176418649, 127.45125971547476),
-                 new naver.maps.LatLng(38.31537252286246, 127.4775100344602),
-                 new naver.maps.LatLng(38.30097328605833, 127.48892970549046),
-                 new naver.maps.LatLng(38.30106155943307, 127.51063103350066),
-                 new naver.maps.LatLng(38.32252750438592, 127.54381031942205),
-                 new naver.maps.LatLng(38.337395293466955, 127.59024943184805),
-                 new naver.maps.LatLng(38.337763566064, 127.61231986933076),
-                 new naver.maps.LatLng(38.28997426084708, 127.58557191128067),
-                 new naver.maps.LatLng(38.267235363360086, 127.59925430519995),
-                 new naver.maps.LatLng(38.25506695911593, 127.58106105048411),
-                 new naver.maps.LatLng(38.23670630294172, 127.56983497013793),
-                 new naver.maps.LatLng(38.22647488146212, 127.54387167999408),
-                 new naver.maps.LatLng(38.20817034772391, 127.53857624603158),
-                 new naver.maps.LatLng(38.196696153262536, 127.51462128107481),
-                 new naver.maps.LatLng(38.17195319204514, 127.50643860097115),
-                 new naver.maps.LatLng(38.1566839278515, 127.49271681540247),
-                 new naver.maps.LatLng(38.14558591200716, 127.50485682301644),
-                 new naver.maps.LatLng(38.122411952796156, 127.48448229417274),
-                 new naver.maps.LatLng(38.1213889072848, 127.44182413672914),
-                 new naver.maps.LatLng(38.11254491261849, 127.43271157644212),
-                 new naver.maps.LatLng(38.111650021865444, 127.38575924845978),
-                 new naver.maps.LatLng(38.09248746131129, 127.32332897924549),
-                 new naver.maps.LatLng(38.113239178580145, 127.31342794935864),
-                 new naver.maps.LatLng(38.11374536112377, 127.28533797240796),
-                 new naver.maps.LatLng(38.13449032094295, 127.27790641954418),
-                 new naver.maps.LatLng(38.1495974983685, 127.28937067741944),
-                 new naver.maps.LatLng(38.17417076323154, 127.29146727692374),
-                 new naver.maps.LatLng(38.1790866530056, 127.27319981021783),
-                 new naver.maps.LatLng(38.16048880005979, 127.25802935713429),
-                 new naver.maps.LatLng(38.144128217872485, 127.22539552047925),
-                 new naver.maps.LatLng(38.157963139766544, 127.19211744512407),
-                 new naver.maps.LatLng(38.181927191525546, 127.18150182398624),
-                 new naver.maps.LatLng(38.19681089627724, 127.16857086007771),
-                 new naver.maps.LatLng(38.22949766461027, 127.16461628401596),
-                 new naver.maps.LatLng(38.239791315402336, 127.15063615800273),
-                 new naver.maps.LatLng(38.22986476152822, 127.13243747984255),
-                 new naver.maps.LatLng(38.23944312080941, 127.11224663908298),
-                 new naver.maps.LatLng(38.26255766722931, 127.11610682730382),
-                 new naver.maps.LatLng(38.289324698353205, 127.1114029794941),
-                        ]
+                                     
+                                ]
+                                
+                            ],
+                            clickable: true,
+                            fillColor: '#00FF00',
+                            fillOpacity: yang_col,
                         
-                    ],
-                    clickable: true,
-                    fillColor: '#00FF00',
-                    fillOpacity: 0.5,
-                
-                });
-                
-                
-                var jungsun = new naver.maps.Polygon({
-                    map: map,
-                    paths: [
-                        [     //정선군
-                new naver.maps.LatLng(37.53115593732261, 128.97541711260882),
-                 new naver.maps.LatLng(37.51023712332886, 128.96439310313676),
-                 new naver.maps.LatLng(37.490138777645036, 128.9889092087044),
-                 new naver.maps.LatLng(37.47223793682091, 128.99010373563758),
-                 new naver.maps.LatLng(37.443939923304505, 128.9598971505237),
-                 new naver.maps.LatLng(37.44797956272428, 128.9398965928549),
-                 new naver.maps.LatLng(37.42698442926836, 128.90007445750192),
-                 new naver.maps.LatLng(37.406538077443344, 128.89794522156635),
-                 new naver.maps.LatLng(37.395526261004804, 128.8710989744585),
-                 new naver.maps.LatLng(37.37808196439606, 128.8601948972467),
-                 new naver.maps.LatLng(37.33678332052992, 128.84808724272884),
-                 new naver.maps.LatLng(37.336200121810826, 128.86896377535214),
-                 new naver.maps.LatLng(37.3194286516695, 128.8757807552518),
-                 new naver.maps.LatLng(37.295193957119054, 128.86206748928709),
-                 new naver.maps.LatLng(37.27722471763947, 128.88216006194006),
-                 new naver.maps.LatLng(37.26200102953299, 128.88219835425625),
-                 new naver.maps.LatLng(37.250479782235374, 128.89704655470135),
-                 new naver.maps.LatLng(37.21351503745573, 128.9104439985025),
-                 new naver.maps.LatLng(37.15835900132828, 128.91992519541006),
-                 new naver.maps.LatLng(37.14507941594737, 128.90144029841872),
-                 new naver.maps.LatLng(37.16650004430325, 128.8844980216139),
-                 new naver.maps.LatLng(37.16473066497762, 128.8427102714393),
-                 new naver.maps.LatLng(37.19378173443867, 128.7983437341657),
-                 new naver.maps.LatLng(37.209258393962365, 128.752417423084),
-                 new naver.maps.LatLng(37.19447335834748, 128.733822730821),
-                 new naver.maps.LatLng(37.18170871719389, 128.69673849977113),
-                 new naver.maps.LatLng(37.179896550907394, 128.64516363996884),
-                 new naver.maps.LatLng(37.1967626568709, 128.63445647511665),
-                 new naver.maps.LatLng(37.21983240024673, 128.5800182474135),
-                 new naver.maps.LatLng(37.266150690291795, 128.57711128285854),
-                 new naver.maps.LatLng(37.27752497059159, 128.5983081010197),
-                 new naver.maps.LatLng(37.29612588462102, 128.58195230427742),
-                 new naver.maps.LatLng(37.307676140284784, 128.586836770047),
-                 new naver.maps.LatLng(37.3230366043366, 128.57238568086174),
-                 new naver.maps.LatLng(37.342370600475505, 128.56841422149793),
-                 new naver.maps.LatLng(37.35795533884362, 128.55489798004524),
-                 new naver.maps.LatLng(37.39677591544929, 128.54118802411114),
-                 new naver.maps.LatLng(37.402649246539916, 128.51488860882412),
-                 new naver.maps.LatLng(37.41621064438209, 128.50911047417225),
-                 new naver.maps.LatLng(37.4316215519973, 128.5212659117154),
-                 new naver.maps.LatLng(37.45186866749771, 128.5154569499662),
-                 new naver.maps.LatLng(37.46073426888258, 128.5265404658139),
-                 new naver.maps.LatLng(37.458477025726175, 128.56548888630738),
-                 new naver.maps.LatLng(37.48583272859945, 128.5586259764646),
-                 new naver.maps.LatLng(37.49196259195359, 128.579531940822),
-                 new naver.maps.LatLng(37.55771209177529, 128.5920258378862),
-                 new naver.maps.LatLng(37.572468637030916, 128.61739155455882),
-                 new naver.maps.LatLng(37.55270846944082, 128.62925474139146),
-                 new naver.maps.LatLng(37.553118420641134, 128.67625339953636),
-                 new naver.maps.LatLng(37.53257945281604, 128.70683905980513),
-                 new naver.maps.LatLng(37.54380661530535, 128.7478021454842),
-                 new naver.maps.LatLng(37.540554408543855, 128.78315551090415),
-                 new naver.maps.LatLng(37.52886632330106, 128.8044130488862),
-                 new naver.maps.LatLng(37.51582849485128, 128.79959265693384),
-                 new naver.maps.LatLng(37.50352006479221, 128.8165645112376),
-                 new naver.maps.LatLng(37.51218293406133, 128.8502070456291),
-                 new naver.maps.LatLng(37.54114392415895, 128.86256578504498),
-                 new naver.maps.LatLng(37.557596919090464, 128.86091320109003),
-                 new naver.maps.LatLng(37.586798700269355, 128.876300206843),
-                 new naver.maps.LatLng(37.583932557147094, 128.89872047631627),
-                 new naver.maps.LatLng(37.549700137525676, 128.90793550759764),
-                 new naver.maps.LatLng(37.53447792070685, 128.94132244775494),
-                 new naver.maps.LatLng(37.5431344574351, 128.96136579700214),
-                 new naver.maps.LatLng(37.53115593732261, 128.97541711260882),
-                             
-                        ]
+                        });
                         
-                    ],
-                    clickable: true,
-                    fillColor: '#00FF00',
-                    fillOpacity: 0.5,
-                
-                });
-                
-                
+                        
+                        
+                        var gosung = new naver.maps.Polygon({
+                            map: map,
+                            paths: [
+                                [     //고성군
+                         new naver.maps.LatLng(38.37495528548392, 128.2061720001211),
+                         new naver.maps.LatLng(38.39981806731884, 128.24528007108742),
+                         new naver.maps.LatLng(38.409935119769564, 128.2512355964118),
+                         new naver.maps.LatLng(38.432558792744565, 128.28445123413462),
+                         new naver.maps.LatLng(38.46934716084635, 128.3036664995331),
+                         new naver.maps.LatLng(38.561777330937126, 128.31751658922644),
+                         new naver.maps.LatLng(38.5893217913146, 128.31310600046916),
+                         new naver.maps.LatLng(38.60689831086401, 128.3234946946747),
+                         new naver.maps.LatLng(38.61100860865129, 128.35328522290698),
+                         new naver.maps.LatLng(38.56445924464448, 128.3994243084971),
+                         new naver.maps.LatLng(38.53887499776193, 128.40839242284525),
+                         new naver.maps.LatLng(38.51983037135328, 128.42554397018958),
+                         new naver.maps.LatLng(38.50338592729907, 128.4254912007594),
+                         new naver.maps.LatLng(38.47481560896285, 128.44229446121105),
+                         new naver.maps.LatLng(38.44865817250916, 128.4703927164287),
+                         new naver.maps.LatLng(38.42730174828724, 128.4604428666149),
+                         new naver.maps.LatLng(38.407731811414855, 128.47411498022078),
+                         new naver.maps.LatLng(38.36896225918823, 128.51804981754728),
+                         new naver.maps.LatLng(38.33567357545014, 128.52859406268013),
+                         new naver.maps.LatLng(38.311491252128306, 128.55331252809583),
+                         new naver.maps.LatLng(38.266133507320134, 128.57106417549218),
+                         new naver.maps.LatLng(38.239545249426804, 128.592173092594),
+                         new naver.maps.LatLng(38.22840016180288, 128.5871139677637),
+                         new naver.maps.LatLng(38.21922571508261, 128.57646840597573),
+                         new naver.maps.LatLng(38.21322851162471, 128.5354865880569),
+                         new naver.maps.LatLng(38.20043328192758, 128.50300912368212),
+                         new naver.maps.LatLng(38.18648727874053, 128.48877421538748),
+                         new naver.maps.LatLng(38.199601060345735, 128.44411061547473),
+                         new naver.maps.LatLng(38.23631971139854, 128.44158372716655),
+                         new naver.maps.LatLng(38.25163303194543, 128.4198436114189),
+                         new naver.maps.LatLng(38.245488863989394, 128.3902877170299),
+                         new naver.maps.LatLng(38.23460789711334, 128.36975263785666),
+                         new naver.maps.LatLng(38.2609048829424, 128.36087591164377),
+                         new naver.maps.LatLng(38.26338194356999, 128.32127556718933),
+                         new naver.maps.LatLng(38.29743225884543, 128.32274760309596),
+                         new naver.maps.LatLng(38.32572252274606, 128.31082166712574),
+                         new naver.maps.LatLng(38.331826174792994, 128.2924255077059),
+                         new naver.maps.LatLng(38.32170265416708, 128.2674471697584),
+                         new naver.maps.LatLng(38.357611533756746, 128.2461987980439),
+                         new naver.maps.LatLng(38.37495528548392, 128.2061720001211)
+                        
+                                     
+                                ]
+                                
+                            ],
+                            clickable: true,
+                            fillColor: '#00FF00',
+                            fillOpacity: go_col,
+                        
+                        });
+                        
+                        
+                        var inje = new naver.maps.Polygon({
+                            map: map,
+                            paths: [
+                                [     //인제군
+                        
+                        new naver.maps.LatLng(38.338006015888745, 128.12544185956497),
+                        new naver.maps.LatLng(38.37495528548392, 128.2061720001211),
+                        new naver.maps.LatLng(38.357611533756746, 128.2461987980439),
+                        new naver.maps.LatLng(38.32170265416708, 128.2674471697584),
+                        new naver.maps.LatLng(38.331826174792994, 128.2924255077059),
+                        new naver.maps.LatLng(38.32572252274606, 128.31082166712574),
+                        new naver.maps.LatLng(38.29743225884543, 128.32274760309596),
+                        new naver.maps.LatLng(38.26338194356999, 128.32127556718933),
+                        new naver.maps.LatLng(38.2609048829424, 128.36087591164377),
+                        new naver.maps.LatLng(38.23460789711334, 128.36975263785666),
+                        new naver.maps.LatLng(38.245488863989394, 128.3902877170299),
+                        new naver.maps.LatLng(38.25163303194543, 128.4198436114189),
+                        new naver.maps.LatLng(38.23631971139854, 128.44158372716655),
+                        new naver.maps.LatLng(38.199601060345735, 128.44411061547473),
+                        new naver.maps.LatLng(38.174826368731615, 128.42205869512358),
+                        new naver.maps.LatLng(38.14839370939287, 128.44448524115805),
+                        new naver.maps.LatLng(38.1351242130816, 128.46727503977746),
+                        new naver.maps.LatLng(38.11674533755288, 128.46761847483637),
+                        new naver.maps.LatLng(38.10678299610833, 128.42979883947874),
+                        new naver.maps.LatLng(38.093637133932056, 128.40637551736762),
+                        new naver.maps.LatLng(38.06031293138297, 128.41702095861382),
+                        new naver.maps.LatLng(38.045961550640115, 128.47452433126722),
+                        new naver.maps.LatLng(38.05071213538417, 128.48583112231915),
+                        new naver.maps.LatLng(38.00221816716901, 128.51440771907983),
+                        new naver.maps.LatLng(37.980794884779975, 128.49844842739043),
+                        new naver.maps.LatLng(37.96446783658907, 128.4991388666651),
+                        new naver.maps.LatLng(37.960019597750055, 128.47967169107102),
+                        new naver.maps.LatLng(37.93276958805915, 128.46564466540386),
+                        new naver.maps.LatLng(37.922603310593686, 128.47728584920637),
+                        new naver.maps.LatLng(37.897297861824654, 128.47581189051292),
+                        new naver.maps.LatLng(37.89034261001761, 128.48396045066394),
+                        new naver.maps.LatLng(37.861347105061064, 128.4379745125403),
+                        new naver.maps.LatLng(37.88184799446629, 128.4156517025131),
+                        new naver.maps.LatLng(37.859108824510365, 128.40319992827898),
+                        new naver.maps.LatLng(37.84441653254173, 128.36849691929913),
+                        new naver.maps.LatLng(37.83045428969843, 128.36667823587985),
+                        new naver.maps.LatLng(37.82265015013752, 128.34818622572138),
+                        new naver.maps.LatLng(37.84064524912735, 128.3096504298611),
+                        new naver.maps.LatLng(37.86713846242429, 128.29594265718364),
+                        new naver.maps.LatLng(37.85364867245336, 128.2636983262254),
+                        new naver.maps.LatLng(37.83359360627233, 128.25639546797603),
+                        new naver.maps.LatLng(37.80956289367274, 128.21109596870605),
+                        new naver.maps.LatLng(37.83097192358949, 128.18284900676593),
+                        new naver.maps.LatLng(37.848612454317355, 128.1719512797252),
+                        new naver.maps.LatLng(37.882185092516984, 128.1756059059635),
+                        new naver.maps.LatLng(37.89263200015374, 128.16300577475445),
+                        new naver.maps.LatLng(37.891055810015146, 128.13554298004433),
+                        new naver.maps.LatLng(37.90040656665992, 128.082199870237),
+                        new naver.maps.LatLng(37.92457725104821, 128.04191501731063),
+                        new naver.maps.LatLng(37.94121335131434, 128.0315994134141),
+                        new naver.maps.LatLng(37.939914305775346, 127.99563401097652),
+                        new naver.maps.LatLng(37.954401399270026, 127.97950583954581),
+                        new naver.maps.LatLng(37.98780535896831, 127.98535361000596),
+                        new naver.maps.LatLng(37.99791182870822, 128.02105487068408),
+                        new naver.maps.LatLng(38.01182855801719, 128.03136564956623),
+                        new naver.maps.LatLng(38.02838087810227, 128.05864546339598),
+                        new naver.maps.LatLng(38.044698244907345, 128.06480382596308),
+                        new naver.maps.LatLng(38.02537380132126, 128.09783662073562),
+                        new naver.maps.LatLng(38.04511830195399, 128.1201802955356),
+                        new naver.maps.LatLng(38.06844335506837, 128.1150243250517),
+                        new naver.maps.LatLng(38.08946481523189, 128.09144439601542),
+                        new naver.maps.LatLng(38.11164551445177, 128.1056736851349),
+                        new naver.maps.LatLng(38.135286489695034, 128.0902850087252),
+                        new naver.maps.LatLng(38.18252456325575, 128.10732568065012),
+                        new naver.maps.LatLng(38.19039568754391, 128.10031576379524),
+                        new naver.maps.LatLng(38.20873077063554, 128.1210146563739),
+                        new naver.maps.LatLng(38.23537386757981, 128.1235836125112),
+                        new naver.maps.LatLng(38.25281197345482, 128.15277394556713),
+                        new naver.maps.LatLng(38.27165114708075, 128.16222622055398),
+                        new naver.maps.LatLng(38.31162734489978, 128.16707008670173),
+                        new naver.maps.LatLng(38.32236608099283, 128.15874211138745),
+                        new naver.maps.LatLng(38.32422054669592, 128.12556335685483),
+                        new naver.maps.LatLng(38.338006015888745, 128.12544185956497),
+                                     
+                                ]
+                                
+                            ],
+                            clickable: true,
+                            fillColor: '#00FF00',
+                            fillOpacity: in_col,
+                        
+                        });
+                        
+                        
+                        var yanggoo = new naver.maps.Polygon({
+                            map: map,
+                            paths: [
+                                [     // 양구군
+                         new naver.maps.LatLng(38.32422986348101, 127.82637643749516),
+                         new naver.maps.LatLng(38.329794594030304, 127.85782295700216),
+                         new naver.maps.LatLng(38.34088838765569, 127.88657503442515),
+                         new naver.maps.LatLng(38.33449051346327, 127.92761871378991),
+                         new naver.maps.LatLng(38.317734672863786, 127.97963325083941),
+                         new naver.maps.LatLng(38.31079695657796, 128.06568907482637),
+                         new naver.maps.LatLng(38.338006015888745, 128.12544185956497),
+                         new naver.maps.LatLng(38.32422054669592, 128.12556335685483),
+                         new naver.maps.LatLng(38.32236608099283, 128.15874211138745),
+                         new naver.maps.LatLng(38.31162734489978, 128.16707008670173),
+                         new naver.maps.LatLng(38.27165114708075, 128.16222622055398),
+                         new naver.maps.LatLng(38.25281197345482, 128.15277394556713),
+                         new naver.maps.LatLng(38.23537386757981, 128.1235836125112),
+                         new naver.maps.LatLng(38.20873077063554, 128.1210146563739),
+                         new naver.maps.LatLng(38.19039568754391, 128.10031576379524),
+                         new naver.maps.LatLng(38.18252456325575, 128.10732568065012),
+                         new naver.maps.LatLng(38.135286489695034, 128.0902850087252),
+                         new naver.maps.LatLng(38.11164551445177, 128.1056736851349),
+                         new naver.maps.LatLng(38.08946481523189, 128.09144439601542),
+                         new naver.maps.LatLng(38.06844335506837, 128.1150243250517),
+                         new naver.maps.LatLng(38.04511830195399, 128.1201802955356),
+                         new naver.maps.LatLng(38.02537380132126, 128.09783662073562),
+                         new naver.maps.LatLng(38.044698244907345, 128.06480382596308),
+                         new naver.maps.LatLng(38.02838087810227, 128.05864546339598),
+                         new naver.maps.LatLng(38.01182855801719, 128.03136564956623),
+                         new naver.maps.LatLng(38.01064911732634, 127.98613993758414),
+                         new naver.maps.LatLng(38.02469814704712, 127.98798457674702),
+                         new naver.maps.LatLng(38.03697336372639, 127.95690714136997),
+                         new naver.maps.LatLng(38.01158141493871, 127.93847798295484),
+                         new naver.maps.LatLng(38.02267336405278, 127.90992911076903),
+                         new naver.maps.LatLng(38.04815092000516, 127.90579626302805),
+                         new naver.maps.LatLng(38.055244623567475, 127.916497745342),
+                         new naver.maps.LatLng(38.09028897640301, 127.90249849268437),
+                         new naver.maps.LatLng(38.09972747064861, 127.88727700221195),
+                         new naver.maps.LatLng(38.11409294495618, 127.88875455743923),
+                         new naver.maps.LatLng(38.13358588483533, 127.87571302087167),
+                         new naver.maps.LatLng(38.16368388763941, 127.88341025366174),
+                         new naver.maps.LatLng(38.189033955041566, 127.87813236987974),
+                         new naver.maps.LatLng(38.20550445935387, 127.8550683285027),
+                         new naver.maps.LatLng(38.24965924406081, 127.85707539793698),
+                         new naver.maps.LatLng(38.32422986348101, 127.82637643749516)
+                                     
+                                ]
+                                
+                            ],
+                            clickable: true,
+                            fillColor: '#00FF00',
+                            fillOpacity: yanggu_col,
+                        
+                        });
+                        
+                        
+                        var hwacheon = new naver.maps.Polygon({
+                            map: map,
+                            paths: [
+                                [     //화천군
+                        new naver.maps.LatLng(38.337763566064, 127.61231986933076),
+                         new naver.maps.LatLng(38.32641122829497, 127.6405311098855),
+                         new naver.maps.LatLng(38.33044255011369, 127.6923691968367),
+                         new naver.maps.LatLng(38.34066482403415, 127.70210966666089),
+                         new naver.maps.LatLng(38.335021412806796, 127.73225360708118),
+                         new naver.maps.LatLng(38.345457809675636, 127.74891242190594),
+                         new naver.maps.LatLng(38.35105087169062, 127.77972374469796),
+                         new naver.maps.LatLng(38.32255842856815, 127.80445448811331),
+                         new naver.maps.LatLng(38.32422986348101, 127.82637643749516),
+                         new naver.maps.LatLng(38.24965924406081, 127.85707539793698),
+                         new naver.maps.LatLng(38.20550445935387, 127.8550683285027),
+                         new naver.maps.LatLng(38.189033955041566, 127.87813236987974),
+                         new naver.maps.LatLng(38.16368388763941, 127.88341025366174),
+                         new naver.maps.LatLng(38.13358588483533, 127.87571302087167),
+                         new naver.maps.LatLng(38.11409294495618, 127.88875455743923),
+                         new naver.maps.LatLng(38.09972747064861, 127.88727700221195),
+                         new naver.maps.LatLng(38.09028897640301, 127.90249849268437),
+                         new naver.maps.LatLng(38.055244623567475, 127.916497745342),
+                         new naver.maps.LatLng(38.04815092000516, 127.90579626302805),
+                         new naver.maps.LatLng(38.04851498801749, 127.85518278921059),
+                         new naver.maps.LatLng(38.01556103947868, 127.85979071697689),
+                         new naver.maps.LatLng(37.9979586592876, 127.82925018484723),
+                         new naver.maps.LatLng(37.990446495163376, 127.79613326641274),
+                         new naver.maps.LatLng(38.02446054871692, 127.77192941601814),
+                         new naver.maps.LatLng(38.03587186750608, 127.74035586342232),
+                         new naver.maps.LatLng(38.02153747223811, 127.71537531921938),
+                         new naver.maps.LatLng(38.03541241759278, 127.70223952451865),
+                         new naver.maps.LatLng(38.03350430882976, 127.67932449696467),
+                         new naver.maps.LatLng(38.02157157305178, 127.65460190048098),
+                         new naver.maps.LatLng(38.05068008728069, 127.65483889554376),
+                         new naver.maps.LatLng(38.04797354991021, 127.62838488758442),
+                         new naver.maps.LatLng(38.07767290454846, 127.59984859977426),
+                         new naver.maps.LatLng(38.08158184858848, 127.56982538824722),
+                         new naver.maps.LatLng(38.0370740116591, 127.58077469182042),
+                         new naver.maps.LatLng(38.01922793024913, 127.5656557065338),
+                         new naver.maps.LatLng(38.01680714656708, 127.54653723954567),
+                         new naver.maps.LatLng(37.99843118565868, 127.54189684816376),
+                         new naver.maps.LatLng(37.99680815824825, 127.50356426725331),
+                         new naver.maps.LatLng(38.00331531710267, 127.47430810833019),
+                         new naver.maps.LatLng(38.01348603532302, 127.46013793737187),
+                         new naver.maps.LatLng(38.048238751068475, 127.44780328408541),
+                         new naver.maps.LatLng(38.09506926769056, 127.44645416125843),
+                         new naver.maps.LatLng(38.11254491261849, 127.43271157644212),
+                         new naver.maps.LatLng(38.1213889072848, 127.44182413672914),
+                         new naver.maps.LatLng(38.122411952796156, 127.48448229417274),
+                         new naver.maps.LatLng(38.14558591200716, 127.50485682301644),
+                         new naver.maps.LatLng(38.1566839278515, 127.49271681540247),
+                         new naver.maps.LatLng(38.17195319204514, 127.50643860097115),
+                         new naver.maps.LatLng(38.196696153262536, 127.51462128107481),
+                         new naver.maps.LatLng(38.20817034772391, 127.53857624603158),
+                         new naver.maps.LatLng(38.22647488146212, 127.54387167999408),
+                         new naver.maps.LatLng(38.23670630294172, 127.56983497013793),
+                         new naver.maps.LatLng(38.25506695911593, 127.58106105048411),
+                         new naver.maps.LatLng(38.267235363360086, 127.59925430519995),
+                         new naver.maps.LatLng(38.28997426084708, 127.58557191128067),
+                         new naver.maps.LatLng(38.337763566064, 127.61231986933076),
+                                     
+                                ]
+                                
+                            ],
+                            clickable: true,
+                            fillColor: '#00FF00',
+                            fillOpacity: hwa_col,
+                        
+                        });
+                        
+                        
+                        var cheolwon = new naver.maps.Polygon({
+                            map: map,
+                            paths: [
+                                [     //철원군
+                        new naver.maps.LatLng(38.289324698353205, 127.1114029794941),
+                         new naver.maps.LatLng(38.307063260450114, 127.13947558528989),
+                         new naver.maps.LatLng(38.326436223439785, 127.14540227526314),
+                         new naver.maps.LatLng(38.331596279869494, 127.16141465259962),
+                         new naver.maps.LatLng(38.31445377390088, 127.18418004575682),
+                         new naver.maps.LatLng(38.316168942607554, 127.19892523685277),
+                         new naver.maps.LatLng(38.336010954921264, 127.24571863951539),
+                         new naver.maps.LatLng(38.32467857236815, 127.29615344291315),
+                         new naver.maps.LatLng(38.314184541079406, 127.31277284160804),
+                         new naver.maps.LatLng(38.32931655539827, 127.3404599714743),
+                         new naver.maps.LatLng(38.32626978690685, 127.35022489234048),
+                         new naver.maps.LatLng(38.337289972382514, 127.39008596472526),
+                         new naver.maps.LatLng(38.33162243842927, 127.42669271519789),
+                         new naver.maps.LatLng(38.31451176418649, 127.45125971547476),
+                         new naver.maps.LatLng(38.31537252286246, 127.4775100344602),
+                         new naver.maps.LatLng(38.30097328605833, 127.48892970549046),
+                         new naver.maps.LatLng(38.30106155943307, 127.51063103350066),
+                         new naver.maps.LatLng(38.32252750438592, 127.54381031942205),
+                         new naver.maps.LatLng(38.337395293466955, 127.59024943184805),
+                         new naver.maps.LatLng(38.337763566064, 127.61231986933076),
+                         new naver.maps.LatLng(38.28997426084708, 127.58557191128067),
+                         new naver.maps.LatLng(38.267235363360086, 127.59925430519995),
+                         new naver.maps.LatLng(38.25506695911593, 127.58106105048411),
+                         new naver.maps.LatLng(38.23670630294172, 127.56983497013793),
+                         new naver.maps.LatLng(38.22647488146212, 127.54387167999408),
+                         new naver.maps.LatLng(38.20817034772391, 127.53857624603158),
+                         new naver.maps.LatLng(38.196696153262536, 127.51462128107481),
+                         new naver.maps.LatLng(38.17195319204514, 127.50643860097115),
+                         new naver.maps.LatLng(38.1566839278515, 127.49271681540247),
+                         new naver.maps.LatLng(38.14558591200716, 127.50485682301644),
+                         new naver.maps.LatLng(38.122411952796156, 127.48448229417274),
+                         new naver.maps.LatLng(38.1213889072848, 127.44182413672914),
+                         new naver.maps.LatLng(38.11254491261849, 127.43271157644212),
+                         new naver.maps.LatLng(38.111650021865444, 127.38575924845978),
+                         new naver.maps.LatLng(38.09248746131129, 127.32332897924549),
+                         new naver.maps.LatLng(38.113239178580145, 127.31342794935864),
+                         new naver.maps.LatLng(38.11374536112377, 127.28533797240796),
+                         new naver.maps.LatLng(38.13449032094295, 127.27790641954418),
+                         new naver.maps.LatLng(38.1495974983685, 127.28937067741944),
+                         new naver.maps.LatLng(38.17417076323154, 127.29146727692374),
+                         new naver.maps.LatLng(38.1790866530056, 127.27319981021783),
+                         new naver.maps.LatLng(38.16048880005979, 127.25802935713429),
+                         new naver.maps.LatLng(38.144128217872485, 127.22539552047925),
+                         new naver.maps.LatLng(38.157963139766544, 127.19211744512407),
+                         new naver.maps.LatLng(38.181927191525546, 127.18150182398624),
+                         new naver.maps.LatLng(38.19681089627724, 127.16857086007771),
+                         new naver.maps.LatLng(38.22949766461027, 127.16461628401596),
+                         new naver.maps.LatLng(38.239791315402336, 127.15063615800273),
+                         new naver.maps.LatLng(38.22986476152822, 127.13243747984255),
+                         new naver.maps.LatLng(38.23944312080941, 127.11224663908298),
+                         new naver.maps.LatLng(38.26255766722931, 127.11610682730382),
+                         new naver.maps.LatLng(38.289324698353205, 127.1114029794941),
+                                ]
+                                
+                            ],
+                            clickable: true,
+                            fillColor: '#00FF00',
+                            fillOpacity: chul_col,
+                        
+                        });
+                        
+                        
+                        var jungsun = new naver.maps.Polygon({
+                            map: map,
+                            paths: [
+                                [     //정선군
+                        new naver.maps.LatLng(37.53115593732261, 128.97541711260882),
+                         new naver.maps.LatLng(37.51023712332886, 128.96439310313676),
+                         new naver.maps.LatLng(37.490138777645036, 128.9889092087044),
+                         new naver.maps.LatLng(37.47223793682091, 128.99010373563758),
+                         new naver.maps.LatLng(37.443939923304505, 128.9598971505237),
+                         new naver.maps.LatLng(37.44797956272428, 128.9398965928549),
+                         new naver.maps.LatLng(37.42698442926836, 128.90007445750192),
+                         new naver.maps.LatLng(37.406538077443344, 128.89794522156635),
+                         new naver.maps.LatLng(37.395526261004804, 128.8710989744585),
+                         new naver.maps.LatLng(37.37808196439606, 128.8601948972467),
+                         new naver.maps.LatLng(37.33678332052992, 128.84808724272884),
+                         new naver.maps.LatLng(37.336200121810826, 128.86896377535214),
+                         new naver.maps.LatLng(37.3194286516695, 128.8757807552518),
+                         new naver.maps.LatLng(37.295193957119054, 128.86206748928709),
+                         new naver.maps.LatLng(37.27722471763947, 128.88216006194006),
+                         new naver.maps.LatLng(37.26200102953299, 128.88219835425625),
+                         new naver.maps.LatLng(37.250479782235374, 128.89704655470135),
+                         new naver.maps.LatLng(37.21351503745573, 128.9104439985025),
+                         new naver.maps.LatLng(37.15835900132828, 128.91992519541006),
+                         new naver.maps.LatLng(37.14507941594737, 128.90144029841872),
+                         new naver.maps.LatLng(37.16650004430325, 128.8844980216139),
+                         new naver.maps.LatLng(37.16473066497762, 128.8427102714393),
+                         new naver.maps.LatLng(37.19378173443867, 128.7983437341657),
+                         new naver.maps.LatLng(37.209258393962365, 128.752417423084),
+                         new naver.maps.LatLng(37.19447335834748, 128.733822730821),
+                         new naver.maps.LatLng(37.18170871719389, 128.69673849977113),
+                         new naver.maps.LatLng(37.179896550907394, 128.64516363996884),
+                         new naver.maps.LatLng(37.1967626568709, 128.63445647511665),
+                         new naver.maps.LatLng(37.21983240024673, 128.5800182474135),
+                         new naver.maps.LatLng(37.266150690291795, 128.57711128285854),
+                         new naver.maps.LatLng(37.27752497059159, 128.5983081010197),
+                         new naver.maps.LatLng(37.29612588462102, 128.58195230427742),
+                         new naver.maps.LatLng(37.307676140284784, 128.586836770047),
+                         new naver.maps.LatLng(37.3230366043366, 128.57238568086174),
+                         new naver.maps.LatLng(37.342370600475505, 128.56841422149793),
+                         new naver.maps.LatLng(37.35795533884362, 128.55489798004524),
+                         new naver.maps.LatLng(37.39677591544929, 128.54118802411114),
+                         new naver.maps.LatLng(37.402649246539916, 128.51488860882412),
+                         new naver.maps.LatLng(37.41621064438209, 128.50911047417225),
+                         new naver.maps.LatLng(37.4316215519973, 128.5212659117154),
+                         new naver.maps.LatLng(37.45186866749771, 128.5154569499662),
+                         new naver.maps.LatLng(37.46073426888258, 128.5265404658139),
+                         new naver.maps.LatLng(37.458477025726175, 128.56548888630738),
+                         new naver.maps.LatLng(37.48583272859945, 128.5586259764646),
+                         new naver.maps.LatLng(37.49196259195359, 128.579531940822),
+                         new naver.maps.LatLng(37.55771209177529, 128.5920258378862),
+                         new naver.maps.LatLng(37.572468637030916, 128.61739155455882),
+                         new naver.maps.LatLng(37.55270846944082, 128.62925474139146),
+                         new naver.maps.LatLng(37.553118420641134, 128.67625339953636),
+                         new naver.maps.LatLng(37.53257945281604, 128.70683905980513),
+                         new naver.maps.LatLng(37.54380661530535, 128.7478021454842),
+                         new naver.maps.LatLng(37.540554408543855, 128.78315551090415),
+                         new naver.maps.LatLng(37.52886632330106, 128.8044130488862),
+                         new naver.maps.LatLng(37.51582849485128, 128.79959265693384),
+                         new naver.maps.LatLng(37.50352006479221, 128.8165645112376),
+                         new naver.maps.LatLng(37.51218293406133, 128.8502070456291),
+                         new naver.maps.LatLng(37.54114392415895, 128.86256578504498),
+                         new naver.maps.LatLng(37.557596919090464, 128.86091320109003),
+                         new naver.maps.LatLng(37.586798700269355, 128.876300206843),
+                         new naver.maps.LatLng(37.583932557147094, 128.89872047631627),
+                         new naver.maps.LatLng(37.549700137525676, 128.90793550759764),
+                         new naver.maps.LatLng(37.53447792070685, 128.94132244775494),
+                         new naver.maps.LatLng(37.5431344574351, 128.96136579700214),
+                         new naver.maps.LatLng(37.53115593732261, 128.97541711260882),
+                                     
+                        
+                                ]
+                                
+                            ],
+                            clickable: true,
+                            fillColor: '#00FF00',
+                            fillOpacity: jung_col,
+                        
+                        });
+                        
                 var pyungchang = new naver.maps.Polygon({
                     map: map,
                     paths: [
@@ -719,7 +962,7 @@
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
-                    fillOpacity: 0.5,
+                    fillOpacity: pyeng_col,
                 
                 });
                 
@@ -815,7 +1058,7 @@
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
-                    fillOpacity: 0.5,
+                    fillOpacity: yung_col,
                 
                 });
                 
@@ -890,7 +1133,7 @@
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
-                    fillOpacity: 0.5,
+                    fillOpacity: hweng_col,
                 });
                 
                 
@@ -998,7 +1241,7 @@
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
-                    fillOpacity: 0.5,
+                    fillOpacity: hong_col,
                 
                 });
                 
@@ -1080,7 +1323,7 @@
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
-                    fillOpacity: 0.5,
+                    fillOpacity: sam_col,
                 
                 });
                 
@@ -1114,7 +1357,7 @@
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
-                    fillOpacity: 0.5,
+                    fillOpacity: sok_col,
                 
                 });
                 
@@ -1165,7 +1408,7 @@
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
-                    fillOpacity: 0.5,
+                    fillOpacity: tae_col,
                 
                 });
                 
@@ -1201,7 +1444,7 @@
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
-                    fillOpacity: 0.5,
+                    fillOpacity: dong_col,
                 
                 });
                 
@@ -1270,7 +1513,7 @@
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
-                    fillOpacity: 0.5,
+                    fillOpacity: gang_col,
                 
                 });
                 
@@ -1341,8 +1584,9 @@
                     ],
                     clickable: true,
                     fillColor: '#00FF00',
-                    fillOpacity: 0.5,
+                    fillOpacity: one_col,
                 });
+                        
                         ///////////////////////////////////////////////////////////////////////////
                         ////////////////////////클릭속성///////////////////////////////////////////
                         //////////////////////////////////////////////////////////////////////////
@@ -1433,53 +1677,11 @@
                         });
                     });
                 }
-                color(pyungchang);
-                color(inje);
-                color(chooncheon);
-                color(yanggoo);
-                color(yangyang);
-                color(gosung);
-                color(hwacheon);
-                color(cheolwon)
-                color(jungsun);
-                color(youngwol);
-                color(hongcheon);
-                color(samcheock);
-                color(sokcho);
-                color(taebaek);
-                color(donghae);
-                color(gangreung);
-                color(wonju);
-                color(hweongsung);
+            }
                 </script>
 
 <br><br><br><hr><br><br><br>
-<div class="container">
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <td><B>시군구동읍면</B></td>
-            <td><B>시군구</B></td>
-            <td><B>병원수</B></td>
-            <td><B>학교수</B></td>
-            <td><B>평당가격(10만원)</B></td>
-        </tr>
-        </thead>
 
-        <tbody>
-        {% for dong_data in dong %}
-        <tr>
-
-            <td>{{dong_data.dong}}</td>
-            <td>{{dong_data.city}}</td>
-            <td>{{dong_data.medical}}</td>
-            <td>{{dong_data.school}}</td>
-            <td>{{dong_data.house}}</td>
-            <input type="hidden" class="city" name="{{dong_data.city}}" >
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
     <br><hr>
 
@@ -1491,32 +1693,6 @@
     
     <br><br><br><br>
 
-    <script src="//code.jquery.com/jquery.min.js"></script>
-    <!--setTimeout(function(){ alert($("input[name=원주시]").length); }, 5000); 이거작동함 -->
-    <script>
-        var test2 = $("input[name=춘천시]").length;
-        $("input[name=원주시]").length;
-        $("input[name=강릉시]").length;
-        $("input[name=동해시]").length;
-        $("input[name=태백시]").length;
-        $("input[name=속초시]").length;
-        $("input[name=삼척시]").length;
-        $("input[name=홍천군]").length;
-        $("input[name=횡성군]").length;
-        $("input[name=영월군]").length;
-        $("input[name=평창군]").length;
-        $("input[name=정선군]").length;
-        $("input[name=철원군]").length;
-        $("input[name=화천군]").length;
-        $("input[name=양구군]").length;
-        $("input[name=인제군]").length;
-        $("input[name=고성군]").length;
-        $("input[name=양양군]").length;
-
-      
-    </script>
-
-    </script>   
 
     </body>
 </html>
