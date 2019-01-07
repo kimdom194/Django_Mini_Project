@@ -4,9 +4,9 @@ from django.db import models
 class Dong_data(models.Model):
     dong = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
-    medical = models.IntegerField(default=0)
-    school = models.IntegerField(default=0)
-    house = models.IntegerField(default=0)
+    medical = models.CharField(max_length=100)
+    school = models.CharField(max_length=100)
+    house = models.CharField(max_length=100)
 
     def __str__(self):
         return self.dong
