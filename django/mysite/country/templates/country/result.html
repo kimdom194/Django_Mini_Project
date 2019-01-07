@@ -1592,7 +1592,7 @@
                         //////////////////////////////////////////////////////////////////////////
                         
                 
-                function addMarker(z, x, y) 
+                function addMarker(name, x, y,a,b,c,d) 
                 {
                     var position = new naver.maps.LatLng(x, y);
                     var markerOptions = // new naver.maps.Marker(
@@ -1605,12 +1605,11 @@
                 
                     var contentString = [
                         '<div class="iw_inner">',
-                        '   <h3>'+z+'</h3>',
-                        '   <p>동읍면: <br />',
-                        '   <p>병원 수: <br />',
-                        '   <p>학교 수: <br />',
-                        '   <p>평당 가격(십만 원): <br />',
-                        '       <a href="http://www.naver.com" target="_blank">www.naver.com/</a>',
+                        '   <h3>'+name+'</h3>',
+                        '   <p>검거율:'+a+'<br />',
+                        '   <p>병원 수:'+b+' <br />',
+                        '   <p>학교 수:'+c+' <br />',
+                        '   <p>평당 가격(십만 원):'+d+' <br />',
                         '   </p>',
                         '</div>'
                     ].join('');
@@ -1640,15 +1639,16 @@
                 }
                 
                 
-                d3.csv("/static/gangwon.csv", function(data){
-                   console.log(data[0]);
+                d3.csv("/static/country.csv", function(data){
+                    console.log(data[0]);
                     csvmake(data);
                     console.log(data);
                 });
                 
                 function csvmake(data){
-                    for (var i=0, ii=data.length; i<ii; i++) {
-                        addMarker(data[i].name,data[i].yi,data[i].ky);
+                    len=data.length;
+                    for (var i=0; i<len; i++) {
+                        addMarker(data[i].name,data[i].yi,data[i].ky,data[i].crime,data[i].medical,data[i].school,data[i].house);
                     }
                 }
                 
