@@ -146,9 +146,6 @@
                     clickable: true,
                     fillColor: '#00FF00',
                     fillOpacity: 0.5,
-                    strokeColor: '#00FF00',
-                    strokeOpacity: 0,
-                    strokeWeight: 3
                 });
                 
                 
@@ -1338,9 +1335,9 @@
                         //////////////////////////////////////////////////////////////////////////
                         
                 
-                function addMarker(z, y, x) 
+                function addMarker(z, x, y) 
                 {
-                    var position = new naver.maps.LatLng(y, x);
+                    var position = new naver.maps.LatLng(x, y);
                     var markerOptions = // new naver.maps.Marker(
                     {
                         position: position.destinationPoint(90, 15),
@@ -1401,26 +1398,46 @@
                 
                 
                 
-                /*
-                
-                    naver.maps.Event.addListener(pyungchang, "mouseover", function(e) {
+                var tooltip = $('<div style="position:absolute;z-index:1000;padding:5px 10px;background-color:#fff;border:solid 2px #000;font-size:14px;pointer-events:none;display:none;"></div>');
+
+                tooltip.appendTo(map.getPanes().floatPane);
+
+                function color(city_name){
+                    naver.maps.Event.addListener(city_name, "mouseover", function(e) {
                         map.setCursor("pointer");
                 
-                        pyungchang.setOptions({
-                            fillOpacity: 0.3
+                        city_name.setOptions({
+                            strokeWeight: 5,
+                            strokeOpacity: 1
                         });
                         
                     });
                 
-                    naver.maps.Event.addListener(pyungchang, "mouseout", function(e) {
-                        map.setCursor("auto");
-                
-                        pyungchang.setOptions({
-                            fillOpacity: 0.4
+                    naver.maps.Event.addListener(city_name, "mouseout", function(e) {
+                        city_name.setOptions({
+                            strokeWeight: 1,
+                            strokeOpacity: 1
                         });
                     });
-                */
-                
+                }
+                color(pyungchang);
+                color(inje);
+                color(chooncheon);
+                color(yanggoo);
+                color(yangyang);
+                color(gosung);
+                color(hwacheon);
+                color(cheolwon)
+                color(jungsun);
+                color(youngwol);
+                color(hongcheon);
+                color(samcheock);
+                color(sokcho);
+                color(taebaek);
+                color(donghae);
+                color(gangreung);
+                color(wonju);
+                color(hweongsung);
                 </script>
 
 <br><br><br><hr><br><br><br>
