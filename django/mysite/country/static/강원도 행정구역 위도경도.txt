@@ -1,0 +1,30 @@
+고성군 new naver.maps.LatLng(38.3737661, 128.4088506)
+속초시new naver.maps.LatLng(38.2018879, 128.547049) 
+홍천군 new naver.maps.LatLng(37.7112111, 127.8935881)
+
+양양군 new naver.maps.LatLng(38.0425571, 128.5622801)
+강릉시 new naver.maps.LatLng(37.7097993, 128.8392226)
+동해시 new naver.maps.LatLng(37.4992616, 129.0729232)
+
+삼척시 new naver.maps.LatLng(37.3023355, 129.1323553)
+태백시new naver.maps.LatLng(37.1565301, 128.9908398) 
+영월군new naver.maps.LatLng(37.168844, 128.4720729)
+
+정선군 new naver.maps.LatLng(37.353892, 128.6767887)
+평창군 new naver.maps.LatLng(37.4414258, 128.4350738) 
+횡성군 new naver.maps.LatLng(37.4690588, 128.0851241)
+
+원주시 new naver.maps.LatLng(37.3196018, 127.9655028)
+인제군 new naver.maps.LatLng(38.0038272, 128.1855733)
+춘천시 new naver.maps.LatLng(37.9179852, 127.6954686)
+
+양구군 new naver.maps.LatLng(38.12479, 127.9880937)
+화천군 new naver.maps.LatLng(38.1279572, 127.6901855)
+철원군 new naver.maps.LatLng(38.2295423, 127.3570059)
+
+
+
+
+
+
+
